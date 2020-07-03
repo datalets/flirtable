@@ -7,61 +7,139 @@
 	<link rel="shortcut icon" type="image/x-icon" href="favicon.png">
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="anonymous" />
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js" integrity="sha512-BrvVYNhKh6yST24E5DY/LopLO5d+8KYmIXyrpBIJ2PK+CyyJw/cLSG/BfJomWLC1IblNrmiJWGlrGueKLd/Ekw==" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js" integrity="sha512-BrvVYNhKh6yST24E5DY/LopLO5d+8KYmIXyrpBIJ2PK+CyyJw/cLSG/BfJomWLC1IblNrmiJWGlrGueKLd/Ekw==" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.0.1/mustache.min.js" integrity="sha512-6AXIWogbKpsHvoZJrJtHpIYES4wP8czSj0zk7ZfwOYS8GWYFNSykwdfapt7yQc4ikZytemBu+QyVObzBHJMwYg==" crossorigin="anonymous"></script>
 
 	<style>
-		html, body {
-			height: 100%;
-			margin: 0;
-		}
-		#map {
-			width: 600px;
-			height: 400px;
-		}
-		header .logo {
-			display: block; float: left;
-			font-size: 0px;
-			height: 40px; width: 200px; margin: 5px;
-			background: url('UD_logo_olive.svg') no-repeat top left;
-			background-size: contain;
-		}
-		header nav {
-			float: right;
-			padding: 10px;
-		}
-		header h1 {
-			font: 17pt helvetica,sans-serif;
-			color: #999;
-			padding-top: 11px;
-		}
-		header nav a {
-			background: #eee;
-			box-shadow: 3px 3px 3px lightgrey;
-			padding: 5px; margin: 5px;
-			text-decoration: none;
-			color: #333;
-		}
+	html, body {
+		height: 100%;
+		margin: 0;
+		overflow: hidden;
+	}
+	#map {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		z-index: 1;
+	}
+	header, .popup {
+		font-family: helvetica,sans-serif;
+	}
+	header {
+		position: fixed;
+		z-index: 10;
+		width: 100%;
+	}
+	header .logo {
+		margin-left: 50px;
+		display: inline-block;
+		font-size: 0px;
+		height: 40px; width: 360px;
+		text-align: right;
+		padding: 8px;
+		background: #fff url('UD_logo_olive.svg') no-repeat top left;
+		background-size: contain;
+		border: 10px solid white;
+		text-decoration: none;
+	}
+	header .title {
+		font-size: 17pt;
+		color: #999;
+		padding-top: 11px;
+	}
+	header nav {
+		float: right;
+		padding: 10px;
+	}
+	header nav a {
+		margin: 5px;
+		font-size: 125%;
+	}
+	.btn {
+		padding: 5px;
+		background: #ff505a;
+		box-shadow: 3px 3px 3px lightgrey;
+		text-decoration: none;
+		color: #eee;
+	}
+	.btn:visited, .btn:active {
+		color: #eee;
+	}
+	.btn:hover {
+		color: #fff;
+	}
+	.popup .title {
+		font-size: 150%;
+		font-weight: bold;
+		padding: 1em 0;
+		text-align: center;
+	}
+	.popup .fld i {
+		color: grey;
+	}
+	.popup .fld span {
+		font-size: 125%;
+		display: block;
+		margin-bottom: 0.5em;
+	}
+	.popup .buttons {
+		text-align: center;
+		margin-top: 1em;
+	}
+	.popup .btn {
+		font-size: 150%;
+		color: white !important;
+		width: 90%;
+		display: block;
+	}
 	</style>
 
 	<style>body { padding: 0; margin: 0; } #map { height: 100%; width: 100vw; }</style>
 </head>
 <body>
 
-<header>
-  <a class="logo" href="https://www.urbanedoerfer.ch/">Urbane Dörfer</a>
-  <nav>
-		<a href="https://airtable.com/shrWpG08Y4xwgsrXc" target="_blank">&#10133; Hinzufügen</a>
-    <a href="https://airtable.com/tblGV4I18vBo5JR1q/viwQwbaqlDDSES2yR?blocks=hide" target="_blank">Daten</a>
-    <a href="mailto:info@datalets.ch?subject=Standortanalyse">Fragen?</a>
-  </nav>
-	<h1 class="title">Standortanalyse</h1>
-</header>
+	<header>
+		<a class="logo" href="#">
+			<div class="title">Standortanalyse</div>
+		</a>
+		<nav>
+			<a class="btn" href="https://airtable.com/shrWpG08Y4xwgsrXc" target="_blank">&#10133; Hinzufügen</a>
+			<a class="btn" href="https://airtable.com/shr0xlFXnWakog1sE?blocks=hide" target="_blank">Daten</a>
+			<a class="btn" href="mailto:info@datalets.ch?subject=Standortanalyse" title="Fragen?">&#9993;</a>
+		</nav>
+	</header>
 
-<div id="map" tabindex="0" style="position: relative;"></div>
+	<div id="map" tabindex="0" style="position: relative;"></div>
 
-<script>
+	<script id="template-popup" type="x-tmpl-mustache">
+	<div class="popup">
+		{{#imageurl}}
+			<img width="100%" src="{{ imageurl }}">
+		{{/imageurl}}
+		<div class="title">{{ title }}</div>
+		{{#fields}}
+			<div class="fld {{ id }}"><i>{{ name }}</i><span>{{ data }}</span>
+		{{/fields}}
+		<div class="buttons">
+			<a class="btn" href="{{ detailurl }}" target="_blank">
+				Details
+			</a>
+		</div>
+	</div>
+	</script>
+
+	<script>
+	var SUMMERY_FIELDS = [
+		'Kategorie',
+		// 'Kontakt', 			// Linked record
+		// 'Erfasst von',		// Linked records
+		'Eingetragen',
+		'Relevanz'
+	];
+	var BASE_DETAIL_URL = 'https://airtable.com/tblGV4I18vBo5JR1q/viw2wRdhJvHaarQyC';
+
 	var map = L.map('map');
 
 	//map.fitWorld();
@@ -70,8 +148,8 @@
 	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 		maxZoom: 18,
 		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+		'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 		id: 'mapbox/streets-v11',
 		tileSize: 512,
 		zoomOffset: -1
@@ -81,7 +159,7 @@
 		var radius = e.accuracy / 2;
 
 		L.marker(e.latlng).addTo(map)
-			.bindPopup(radius + " m entfernt").openPopup();
+		.bindPopup(radius + " m entfernt").openPopup();
 
 		L.circle(e.latlng, radius).addTo(map);
 	}
@@ -97,20 +175,34 @@
 
 	$.get("/items", function(data) {
 		data.forEach(function(row) {
-		  console.log("Row:", row);
-			img = (!row.data.Bilder || row.data.Bilder.length == 0) ? '' :
-				'<img width="100%" src="' + row.data.Bilder[0].url + '">'
-		  L.circle({lat: row.data.Lat, lon: row.data.Lon}, 30)
-		    .addTo(map)
-			  .bindPopup([
-					img,
-					'<b>' + row.data.Adresse + '</b>',
-					'<i>Kategorie:</i> ' + row.data.Kategorie,
-					'<i>Relevanz:</i> ' + row.data.Relevanz,
-					'<a class="btn"
-				].join('<br>'))
-	  });
-  });
-</script>
+			// console.log("Row:", row);
+			var template = $('#template-popup').html();
+			var rowdata = {
+				fields: [],
+				title: row.data.Adresse,
+				detailurl: BASE_DETAIL_URL + '/' + row.id + '?blocks=hide',
+				imageurl: (!row.data.Bilder || row.data.Bilder.length == 0) ? false :
+										row.data.Bilder[0].url
+			};
+			SUMMERY_FIELDS.forEach(function(f) {
+				if (['string', 'number'].indexOf(typeof row.data[f])<0) {
+					return console.log('Skipping object field', f);
+				}
+				rowdata.fields.push({
+					id: f.toLowerCase().replace(' ', '-'),
+					name: f,
+					data: row.data[f]
+				})
+			});
+			L.circleMarker({lat: row.data.Lat, lon: row.data.Lon}, {
+				radius: 15,
+				color: '#ff505a'
+			}).addTo(map)
+			.bindPopup(
+				 Mustache.render(template, rowdata)
+			)
+		});
+	});
+	</script>
 
-</body></html>
+	</body></html>
