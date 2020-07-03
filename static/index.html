@@ -8,7 +8,8 @@
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="anonymous" />
-  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.2.0/papaparse.min.js" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js" integrity="sha512-BrvVYNhKh6yST24E5DY/LopLO5d+8KYmIXyrpBIJ2PK+CyyJw/cLSG/BfJomWLC1IblNrmiJWGlrGueKLd/Ekw==" crossorigin="anonymous"></script>
 
 	<style>
 		html, body {
@@ -30,6 +31,11 @@
 			float: right;
 			padding: 10px;
 		}
+		header h1 {
+			font: 17pt helvetica,sans-serif;
+			color: #999;
+			padding-top: 11px;
+		}
 		header nav a {
 			background: #eee;
 			box-shadow: 3px 3px 3px lightgrey;
@@ -49,6 +55,7 @@
     <a href="https://airtable.com/tblGV4I18vBo5JR1q/viwQwbaqlDDSES2yR?blocks=hide">Daten</a>
     <a href="mailto:info@datalets.ch?subject=Standortanalyse">Fragen?</a>
   </nav>
+	<h1 class="title">Standortanalyse</h1>
 </header>
 
 <div id="map" tabindex="0" style="position: relative;"></div>
@@ -85,19 +92,22 @@
 	map.on('locationfound', onLocationFound);
 	map.on('locationerror', onLocationError);
 
-	map.locate({setView: true, maxZoom: 16});
+	// map.locate({setView: true, maxZoom: 16});
 
-	Papa.parse("Standorte-All.csv", {
-	  download: true, header: true,
-	  step: function(row) {
-		  console.log("Row:", row.data);
-		  L.circle({lat: row.data['Lat'], lon: row.data['Lon']}, 30)
+	$.get("/items", function(data) {
+		data.forEach(function(row) {
+		  console.log("Row:", row);
+			img = (!row.data.Bilder || row.data.Bilder.length == 0) ? '' :
+				'<img width="100%" src="' + row.data.Bilder[0].url + '">'
+		  L.circle({lat: row.data.Lat, lon: row.data.Lon}, 30)
 		    .addTo(map)
-			  .bindPopup(row.data.Adresse)
-	  },
-	  complete: function() {
-		  console.log("Done");
-	  }
+			  .bindPopup([
+					img,
+					'<b>' + row.data.Adresse + '</b>',
+					'<i>Kategorie:</i> ' + row.data.Kategorie,
+					'<i>Relevanz:</i> ' + row.data.Relevanz
+				].join('<br>'))
+	  });
   });
 </script>
 
