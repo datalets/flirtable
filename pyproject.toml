@@ -1,0 +1,12 @@
+[tool.poetry]
+name = "standort-app"
+version = "0.1.0"
+description = ""
+authors = ["Oleg Lavrovsky <oleg@datalets.ch>"]
+
+[tool.poetry.dependencies]
+python = ">=3.6"
+gunicorn = "*"
+python-dotenv = "*"
+flask_api = "^2.0"
+Airtable = "^0.3.1"

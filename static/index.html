@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>Standortanalyse</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.png">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.2.0/papaparse.min.js" crossorigin="anonymous"></script>
+
+	<style>
+		html, body {
+			height: 100%;
+			margin: 0;
+		}
+		#map {
+			width: 600px;
+			height: 400px;
+		}
+		header .logo {
+			display: block; float: left;
+			font-size: 0px;
+			height: 40px; width: 200px; margin: 5px;
+			background: url('UD_logo_olive.svg') no-repeat top left;
+			background-size: contain;
+		}
+		header nav {
+			float: right;
+			padding: 10px;
+		}
+		header nav a {
+			background: #eee;
+			box-shadow: 3px 3px 3px lightgrey;
+			padding: 5px; margin: 5px;
+			text-decoration: none;
+			color: #333;
+		}
+	</style>
+
+	<style>body { padding: 0; margin: 0; } #map { height: 100%; width: 100vw; }</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="https://www.urbanedoerfer.ch/">Urbane Dörfer</a>
+  <nav>
+    <a href="https://airtable.com/tblGV4I18vBo5JR1q/viwQwbaqlDDSES2yR?blocks=hide">Daten</a>
+    <a href="mailto:info@datalets.ch?subject=Standortanalyse">Fragen?</a>
+  </nav>
+</header>
+
+<div id="map" tabindex="0" style="position: relative;"></div>
+
+<script>
+	var map = L.map('map');
+
+	//map.fitWorld();
+	map.setView([46.9460, 7.4358], 15);
+
+	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+		maxZoom: 18,
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		id: 'mapbox/streets-v11',
+		tileSize: 512,
+		zoomOffset: -1
+	}).addTo(map);
+
+	function onLocationFound(e) {
+		var radius = e.accuracy / 2;
+
+		L.marker(e.latlng).addTo(map)
+			.bindPopup(radius + " m entfernt").openPopup();
+
+		L.circle(e.latlng, radius).addTo(map);
+	}
+
+	function onLocationError(e) {
+		alert(e.message);
+	}
+
+	map.on('locationfound', onLocationFound);
+	map.on('locationerror', onLocationError);
+
+	map.locate({setView: true, maxZoom: 16});
+
+	Papa.parse("Standorte-All.csv", {
+	  download: true, header: true,
+	  step: function(row) {
+		  console.log("Row:", row.data);
+		  L.circle({lat: row.data['Lat'], lon: row.data['Lon']}, 30)
+		    .addTo(map)
+			  .bindPopup(row.data.Adresse)
+	  },
+	  complete: function() {
+		  console.log("Done");
+	  }
+  });
+</script>
+
+</body></html>
