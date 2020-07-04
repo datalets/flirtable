@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-from flask import request, url_for, send_from_directory
+from flask import request, url_for, send_from_directory, redirect
 from flask_api import FlaskAPI, status, exceptions
 from airtable import airtable
 
@@ -26,6 +26,7 @@ except KeyError:
 
 def fetch_data():
     """ Collect remote data """
+    items = {}
     for r in at.iterate(TABLE_NAME):
         record = r['fields']
         if SORT_KEY is None:
@@ -75,6 +76,11 @@ def item_detail(key):
 @app.route('/app/')
 def route_index():
     return send_from_directory('static', 'index.html')
+
+@app.route('/refresh')
+def route_refresh():
+    fetch_data()
+    return redirect("/app/", code=302)
 
 @app.route('/app/<path:path>')
 def route_app(path):
