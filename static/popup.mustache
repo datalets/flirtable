@@ -1,0 +1,28 @@
+<div class="popup">
+  {{#imageurl}}
+    <img width="100%" src="{{ imageurl }}">
+  {{/imageurl}}
+  <div class="title">{{ title }}</div>
+  <div class="address">{{ address }}</div>
+  {{#fields}}
+    {{^fulltext}}
+      <div class="fld {{ id }}">
+        <i>{{ name }}</i><span>{{ data }}</span>
+      </div>
+    {{/fulltext}}
+    {{#fulltext}}
+      <div class="fld {{ id }}">
+        <i>{{ name }}</i><span>{{ data }}</span>
+        <a onclick="fulltextLink(this)">...mehr</a>
+        <hide>{{ fulltext }}</hide>
+      </div>
+    {{/fulltext}}
+  {{/fields}}
+  {{#detailurl}}
+    <div class="buttons">
+      <a class="btn" href="{{ detailurl }}" target="_blank">
+        Details
+      </a>
+    </div>
+  {{/detailurl}}
+</div>

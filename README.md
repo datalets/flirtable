@@ -1,11 +1,10 @@
 # Standortanalyse
 
-WIP
-
-[![Deploy on Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/loleg/standortanalyse)
+This is a web based visualization of location data in an Airtable, developed as part of the [Urbane Dörfer](https://www.urbanedoerfer.ch/) project.
 
 ### Components
 
+* [Airtable](https://airtable.com) super-spreadsheets
 * [Flask](https://flask.palletsprojects.com/), a [Python](https://python.org) web framework
 * [Flask-API](http://www.flaskapi.org/) API layer
 * [Leaflet.js](https://leafletjs.com/reference-1.6.0.html) mapping
@@ -18,8 +17,25 @@ WIP
 
 | Location                |  Content                             |
 |-------------------------|--------------------------------------|
-| `/static`               | Frontend application                 |
+| `/data`                 | Sample data structure                |
+| `/static`               | Frontend resources                   |
+| `/templates`            | Frontend templates                   |
 | `/app.py`               | Flask API (`/api`)                   |
+
+## Configuration
+
+The following environment keys can be used to configure this project:
+
+- `MAPBOX_KEY` get an access token [here](https://docs.mapbox.com/api/#access-tokens-and-token-scopes) or [here](view-source:https://leafletjs.com/examples/choropleth/example.html) for the base layer
+- `AIRTABLE_BASE`, `AIRTABLE_TABLE` and `AIRTABLE_KEY` from the [Airtable API](https://airtable.com/api)
+- `AIRTABLE_FORM` (optional) is the URL of the shared add (Form) view
+- `AIRTABLE_LINK` (optional) is the URL of the shared detail (Gallery) view
+- `POPUP_FIELDS` (optional) are a comma-delimited list of columns which are shown in the detail pop-up
+- `SORT_KEY` (optional) to indicate which column to sort on
+
+These can be added using Heroku's add project or Settings interface:
+
+[![Deploy on Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/loleg/standortanalyse)
 
 ## Installation
 
@@ -36,14 +52,19 @@ $ poetry install
 $ poetry shell
 ```
 
-Create a file called `.flaskenv` in the root folder and add development settings:
+Create a file called `.flaskenv` in the root folder and add development settings and required keys from the Configuration section above - for example:
 
 ```
-SORT_KEY=Adresse (optional)
-REQUIRED_FIELDS=Adresse (optional)
+POPUP_FIELDS=Kategorie,Eingetragen,Notizen,Relevanz
+SORT_KEY=Kategorie
+
 AIRTABLE_BASE=...
 AIRTABLE_KEY=...
 AIRTABLE_TABLE=Standorte
+AIRTABLE_LINK=https://airtable.com/shr...
+AIRTABLE_FORM=https://airtable.com/shr...
+
+MAPBOX_KEY=pk...
 
 # When not in production:
 FLASK_ENV=development

@@ -1,6 +1,11 @@
 #! /usr/bin/env python3
 
-from flask import request, url_for, send_from_directory, redirect, g
+from flask import (
+    request, url_for,
+    send_from_directory,
+    render_template,
+    redirect, g
+)
 from flask_api import FlaskAPI, status, exceptions
 from airtable import airtable
 
@@ -11,17 +16,18 @@ load_dotenv()
 
 try:
     SORT_KEY = os.getenv("SORT_KEY", None)
-    REQUIRED_FIELDS = os.getenv("REQUIRED_FIELDS", '').split(",")
+    POPUP_FIELDS = os.getenv("POPUP_FIELDS", '')
+    REQUIRED_FIELDS = POPUP_FIELDS.split(",")
     TABLE_NAME = os.environ["AIRTABLE_TABLE"]
+    MAPBOX_KEY = os.environ["MAPBOX_KEY"]
+    AIRTABLE_LINK = os.getenv("AIRTABLE_LINK", '')
+    AIRTABLE_FORM = os.getenv("AIRTABLE_FORM", '')
     at = airtable.Airtable(
         os.environ["AIRTABLE_BASE"],
         os.environ["AIRTABLE_KEY"],
     )
 except KeyError:
-    print("Environment not ready:")
-    print("- AIRTABLE_BASE, AIRTABLE_TABLE and AIRTABLE_KEY from the API")
-    print("- REQUIRED_FIELDS (optional) with a comma-delimited list of columns")
-    print("- SORT_KEY (optional) to indicate which column to sort on")
+    print("Environment not ready: see README for required keys")
     exit(1)
 
 def fetch_data():
@@ -48,6 +54,13 @@ def valid_entry(entry):
 # Set up the Flask App
 app = FlaskAPI(__name__, static_url_path='/static')
 
+app.config.update(
+    MAPBOX_KEY=MAPBOX_KEY,
+    POPUP_FIELDS=POPUP_FIELDS,
+    AIRTABLE_LINK=AIRTABLE_LINK,
+    AIRTABLE_FORM=AIRTABLE_FORM,
+)
+
 def item_repr(key):
     return {
         'id': key,
@@ -72,17 +85,18 @@ def item_detail(key):
         raise exceptions.NotFound()
     return item_repr(key)
 
-@app.route('/app/')
+@app.route('/')
+@app.route('/app')
 def route_index():
-    return send_from_directory('static', 'index.html')
+    return render_template('index.html')
 
 @app.route('/refresh')
 def route_refresh():
     fetch_data()
-    return redirect("/app/", code=302)
+    return redirect("/", code=302)
 
-@app.route('/app/<path:path>')
-def route_app(path):
+@app.route('/static/<path:path>')
+def route_static(path):
     return send_from_directory('static', path)
 
 if __name__ == "__main__":

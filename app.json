@@ -10,19 +10,28 @@
       "value": "production"
     },
     "AIRTABLE_BASE": {
-      "description": "Airtable Base"
+      "description": "Airtable base ID"
     },
     "AIRTABLE_NAME": {
-      "description": "Airtable Table name"
+      "description": "Table name"
     },
     "AIRTABLE_KEY": {
       "description": "Airtable API key"
     },
+    "AIRTABLE_LINK": {
+      "description": "Detailed view link"
+    },
+    "AIRTABLE_FORM": {
+      "description": "Add more form link"
+    },
     "SORT_KEY": {
       "description": "Field name to sort on"
     },
-    "REQUIRED_FIELDS": {
-      "description": "Comma-delimited list of required columns"
+    "POPUP_FIELDS": {
+      "description": "Comma-delimited list of columns shown in popup"
+    },
+    "MAPBOX_KEY": {
+      "description": "Mapbox API key"
     }
    },
   "buildpacks": [

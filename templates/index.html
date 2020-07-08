@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>Standortanalyse</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.png">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="anonymous" />
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js" integrity="sha512-BrvVYNhKh6yST24E5DY/LopLO5d+8KYmIXyrpBIJ2PK+CyyJw/cLSG/BfJomWLC1IblNrmiJWGlrGueKLd/Ekw==" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.0.1/mustache.min.js" integrity="sha512-6AXIWogbKpsHvoZJrJtHpIYES4wP8czSj0zk7ZfwOYS8GWYFNSykwdfapt7yQc4ikZytemBu+QyVObzBHJMwYg==" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="static/index.css" />
+</head>
+<body>
+
+	<header>
+		<a class="logo" href="#">
+			<div class="title">Standortanalyse</div>
+		</a>
+		<nav>
+			{% if config.AIRTABLE_FORM %}
+				<a class="btn" href="{{ config.AIRTABLE_FORM }}" target="_blank">&#x25BC;&nbsp;Hinzufügen</a>
+			{% endif %}
+			<a class="btn" href="/refresh">&#8635;&nbsp;Neuladen</a>
+			<a class="btn" href="#" id="geolocate" title="Finde mich">&#8858;</a>
+			<a class="btn" href="mailto:info@datalets.ch?subject=Standortanalyse" title="Fragen?">&#9993;</a>
+		</nav>
+	</header>
+
+	<div id="map" tabindex="0" style="position: relative;"></div>
+
+	<script>
+	var POPUP_FIELDS = "{{ config.POPUP_FIELDS }}".split(',');
+	var BASE_DETAIL_URL = '{{ config.AIRTABLE_LINK }}';
+	var MAPBOX_KEY = '{{ config.MAPBOX_KEY }}';
+	var MAX_FIELD_LENGTH = 100;
+
+	var map = L.map('map');
+
+	// Create base layer and attribution
+	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=' + MAPBOX_KEY, {
+		maxZoom: 18,
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+		'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+		'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		id: 'mapbox/streets-v11',
+		tileSize: 512,
+		zoomOffset: -1
+	}).addTo(map);
+
+	// Set geolocation events
+	map.on('locationfound', function(e) {
+		var radius = e.accuracy / 2;
+		L.marker(e.latlng).addTo(map);
+			//.bindPopup(radius + " m entfernt").openPopup();
+	});
+	map.on('locationerror', function(e) {
+		alert(e.message);
+	});
+	$('#geolocate').click(function() {
+		map.locate({setView: true, maxZoom: 16});
+	});
+
+	// Geolocation utility (on right-click)
+	map.on('contextmenu', function(e) {
+		var coords = e.latlng.lat.toFixed(4)+'	'+e.latlng.lng.toFixed(4);
+		L.popup().setLatLng(e.latlng).setContent(coords).openOn(map);
+	});
+
+	// Color scheme
+	function getColor(d) {
+		var cols = ['#cfdfff','#d0f0fd','#c2f5e9','#d1f7c4','#ffeab6','#fee2d5','#ffdce5','#ffdaf6','#ede2fe','#eee'];
+		return (d >= cols.length) ? cols[0] : cols[d];
+	}
+
+	fetch('static/popup.mustache')
+    .then((response) => response.text())
+    .then((template) => {
+			$.get("/items", function(data) {
+
+				// Holder for map markers
+				var items = new L.featureGroup();
+				var categories = [];
+
+				data.forEach(function(row) {
+					console.log("Row:", row);
+
+					// Parse essential fields
+					var rowdata = {
+						fields: [],
+						title: row.data.Name,
+						address: row.data.Adresse,
+						detailurl: BASE_DETAIL_URL == '' ? null : BASE_DETAIL_URL + '/' + row.id + '?blocks=hide',
+						imageurl: (!row.data.Bilder || row.data.Bilder.length == 0) ? false :
+												row.data.Bilder[0].url
+					};
+
+					// Set up data for the popup
+					POPUP_FIELDS.forEach(function(f) {
+						var v = row.data[f], fulltext = null;
+						if (['string', 'number'].indexOf(typeof v)<0) {
+							return console.log('Skipping object field', f);
+						}
+						if (typeof v == 'string' && v.length > MAX_FIELD_LENGTH) {
+							fulltext = v;
+							v = v.replace(new RegExp("(.{1," + MAX_FIELD_LENGTH + "})(?:\s|$)"), "$1\n");
+							v = v.split('\n')[0];
+						}
+						rowdata.fields.push({
+							id: f.toLowerCase().replace(' ', '-'),
+							name: f,
+							data: v,
+							fulltext: fulltext,
+						})
+					});
+
+					// Check category
+					var category = row.data['Kategorie'];
+					var categoryix = 0;
+					if (category) {
+						if (categories.indexOf(categories) < 0) {
+							categories.push(category);
+						}
+						categoryix = categories.indexOf(category);
+						console.log(category, categoryix);
+					}
+
+					// Create map marker
+					L.circleMarker(
+						{lat: row.data.Lat, lon: row.data.Lon}, {
+							radius: 10,
+							fillColor: getColor(categoryix),
+							fillOpacity: 0.8,
+							color: '#ff505a',
+							weight: 2
+						})
+						.addTo(items)
+						.addTo(map)
+						.bindPopup(
+							// Prepare HTML for the pop-up
+							Mustache.render(template, rowdata)
+						);
+				}); // -forEach
+
+				// Re-center map on markers
+				map.fitBounds(items.getBounds());
+
+				// Set up legend
+				var legend = L.control({position: 'bottomright'});
+			  legend.onAdd = function() {
+				  var div = L.DomUtil.create('div', 'info legend');
+				  var labels = ['<strong> Kategorien </strong>'];
+				  for (var i = 0; i < categories.length; i++) {
+			      div.innerHTML += labels.push(
+				    	'<i class="circle" style="background:' + getColor(i) + '"></i> '
+							+ categories[i]
+						);
+			    }
+			    div.innerHTML = labels.join('<br>');
+				  return div;
+			  }
+			  legend.addTo(map);
+
+			}); // -function(data)
+		}); // -fetch template
+
+		// For fields with links that open contents in a dialog
+		function fulltextLink(e) {
+			var fulltext = $(e).parent().find('hide');
+			alert(fulltext.html())
+			// L.popup().setContent(fulltext.html()).openOn(map);
+		}
+	</script>
+
+	</body></html>

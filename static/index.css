@@ -1,0 +1,120 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+}
+#map {
+  height: 100%; width: 100vw;
+  position: absolute;
+  z-index: 1;
+}
+hide {
+  display: none;
+}
+header, .popup {
+  font-family: helvetica,sans-serif;
+}
+header {
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+}
+header .logo {
+  margin-left: 50px;
+  display: inline-block;
+  font-size: 0px;
+  height: 40px; width: 360px;
+  text-align: right;
+  padding: 8px;
+  background: #fff url('UD_logo_olive.svg') no-repeat top left;
+  background-size: contain;
+  border: 10px solid white;
+  text-decoration: none;
+}
+header .title {
+  font-size: 17pt;
+  color: #999;
+  padding-top: 11px;
+}
+header nav {
+  float: right;
+  padding: 10px;
+}
+header nav a {
+  margin: 5px;
+  font-size: 125%;
+}
+.btn {
+  background: #ff505a;
+  box-shadow: 3px 3px 3px lightgrey;
+  text-decoration: none;
+  color: #eee;
+  border-radius: 7px;
+  padding: 5px 7px 2px;
+}
+.btn:visited, .btn:active {
+  color: #eee;
+}
+.btn:hover {
+  color: #fff;
+}
+.popup .address,
+.popup .title {
+  font-size: 120%;
+  padding: 0.5em 0;
+  margin: 0px;
+}
+.popup .title {
+  font-size: 150%;
+  font-weight: bold;
+  text-align: center;
+}
+.popup .fld i {
+  color: grey;
+  clear: both;
+  display: block;
+}
+.popup .fld span {
+  font-size: 125%;
+}
+.popup .fld {
+  margin-bottom: 0.5em;
+}
+.popup .buttons {
+  text-align: center;
+  margin-top: 1em;
+}
+.popup a {
+  cursor: pointer;
+}
+.popup .btn {
+  font-size: 150%;
+  color: white;
+  display: inline-block;
+}
+.legend {
+  text-align: left;
+  line-height: 18px;
+  color: #555;
+}
+.legend i {
+  width: 18px;
+  height: 18px;
+  float: left;
+  margin-right: 8px;
+  opacity: 0.7;
+}
+.info {
+  padding: 6px 8px;
+  font-size: 14px;
+  line-height: 20px;
+  background: white;
+  background: rgba(255,255,255,0.8);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
+}
+.info strong {
+  line-height: 35px;
+  color: #777;
+}
