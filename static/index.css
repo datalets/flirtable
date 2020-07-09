@@ -70,6 +70,9 @@ header nav a {
   font-weight: bold;
   text-align: center;
 }
+.popup img {
+  max-height: 100px;
+}
 .popup .fld i {
   color: grey;
   clear: both;
