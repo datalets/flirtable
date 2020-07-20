@@ -201,7 +201,6 @@
                             categories.push(category);
                         }
                         categoryix = categories.indexOf(category);
-                        console.log("000",category, categoryix);
                     }
 
                     // Check color
@@ -212,7 +211,6 @@
                             categoriescolor.push(categorycolor);
                         }
                         categoryixcolor = categoriescolor.indexOf(categorycolor);
-                        console.log(categorycolor, categoryixcolor);
                     }
 
                     // check icon
@@ -226,7 +224,6 @@
                         console.log(categoryicon, categoryixicon);
                     }
 
-                    console.log("Iconkategorien",categoriesicon)
 
 
                     // check Marker
@@ -238,7 +235,6 @@
                         }
                         categoryixmarker = categoriesmarker.indexOf(categorymarker);
                     }
-                    console.log("Marker", categoriesmarker)
 
 
 
@@ -286,7 +282,6 @@
                   var div = L.DomUtil.create('div', 'info legend');
                   var labels = ['<strong> Kategorien </strong>'];
                   for (var i = 0; i < categories.length; i++) {
-                      console.log("welche Farbe",getIcon(i))
                   div.innerHTML += labels.push(
                     '<i class="' + getIcon(i) + '"  style=" color:white; padding-top:2px; text-align:center; background:' + getColor2(i) + '"></i> '
                             + categories[i]
@@ -306,7 +301,6 @@
                 
                 for (var i = 0; i<numbercategories.length; ++i) {
                 overlays[categories[i]] =Groups[i];
-                console.log(Groups[i])
                 }
 
               
