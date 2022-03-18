@@ -1,13 +1,14 @@
 [[package]]
 name = "airtable"
-version = "0.3.1"
-description = "UNKNOWN"
+version = "0.4.8"
+description = "Python client library for AirTable"
 category = "main"
 optional = false
 python-versions = "*"
 
 [package.dependencies]
-requests = ">=2.5.3"
+requests = ">=2.20.0"
+six = "*"
 
 [[package]]
 name = "certifi"
@@ -82,14 +83,14 @@ Werkzeug = ">=2.0"
 
 [[package]]
 name = "flask-api"
-version = "2.0"
+version = "3.0.post1"
 description = "Browsable web APIs for Flask."
 category = "main"
 optional = false
 python-versions = "*"
 
 [package.dependencies]
-Flask = ">=1.1"
+Flask = ">=2.0"
 
 [[package]]
 name = "gunicorn"
@@ -204,6 +205,14 @@ version = ">=2.5,<4"
 python = ">=3"
 
 [[package]]
+name = "six"
+version = "1.16.0"
+description = "Python 2 and 3 compatibility utilities"
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
+
+[[package]]
 name = "typing-extensions"
 version = "4.1.1"
 description = "Backported and Experimental Type Hints for Python 3.6+"
@@ -256,11 +265,12 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 
 [metadata]
 python-versions = ">=3.6,<4"
-content-hash = "2cc90eb500a78272e3f73dded30f7b037125d542dcacb262810cba9d6940523e"
+content-hash = "d7d76e59d95f87c68208df36cbcb23c35edee3e85028d8c32595ca4d7aca6438"
 
 [metadata.files]
 airtable = [
-    {file = "airtable-0.3.1.tar.gz", hash = "sha256:7296119221137ba7b928497e9435f475c0c17554276814d0d41a4cd36e856f64"},
+    {file = "airtable-0.4.8-py2.py3-none-any.whl", hash = "sha256:d653e1b3b92297e3f0cc4226215d43d7fa99c72f38918e9371e445abf0baa70c"},
+    {file = "airtable-0.4.8.tar.gz", hash = "sha256:fb667e55da3af1341e0f2946014cc29e7d0613e69f3ee20528051c4075aee75c"},
 ]
 certifi = [
     {file = "certifi-2021.10.8-py2.py3-none-any.whl", hash = "sha256:d62a0163eb4c2344ac042ab2bdf75399a71a2d8c7d47eac2e2ee91b9d6339569"},
@@ -287,8 +297,8 @@ flask = [
     {file = "Flask-2.0.3.tar.gz", hash = "sha256:e1120c228ca2f553b470df4a5fa927ab66258467526069981b3eb0a91902687d"},
 ]
 flask-api = [
-    {file = "Flask-API-2.0.tar.gz", hash = "sha256:6986642e5b25b7def710ca9489ed2b88c94006bfc06eca01c78da7cf447e66e5"},
-    {file = "Flask_API-2.0-py3-none-any.whl", hash = "sha256:3d4cfb2ff214af9957f61455f660b5cfa181d6112e56cda526011bbe7af2a09e"},
+    {file = "Flask-API-3.0.post1.tar.gz", hash = "sha256:331889500433b0a5e71ae7910a00ee577c8999baba03ca685b3558ee93031cce"},
+    {file = "Flask_API-3.0.post1-py3-none-any.whl", hash = "sha256:913d1ef4d303b5e4490a712175d83a91c2b9cc6052ef501cff8301d9f553b179"},
 ]
 gunicorn = [
     {file = "gunicorn-20.1.0.tar.gz", hash = "sha256:e0a968b5ba15f8a328fdfd7ab1fcb5af4470c28aaf7e55df02a99bc13138e6e8"},
@@ -352,6 +362,10 @@ python-dotenv = [
 requests = [
     {file = "requests-2.27.1-py2.py3-none-any.whl", hash = "sha256:f22fa1e554c9ddfd16e6e41ac79759e17be9e492b3587efa038054674760e72d"},
     {file = "requests-2.27.1.tar.gz", hash = "sha256:68d7c56fd5a8999887728ef304a6d12edc7be74f1cfa47714fc8b414525c9a61"},
+]
+six = [
+    {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},
+    {file = "six-1.16.0.tar.gz", hash = "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"},
 ]
 typing-extensions = [
     {file = "typing_extensions-4.1.1-py3-none-any.whl", hash = "sha256:21c85e0fe4b9a155d0799430b0ad741cdce7e359660ccbd8b530613e8df88ce2"},
