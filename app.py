@@ -17,11 +17,11 @@ load_dotenv()
 try:
     SORT_KEY = os.getenv("SORT_KEY", None)
     BASE_FIELDS = os.getenv("BASE_FIELDS", '')
-    BASE_FIELDS = BASE_FIELDS.split(",")
     POPUP_FIELDS = os.getenv("POPUP_FIELDS", '')
-    REQUIRED_FIELDS = POPUP_FIELDS.split(",")
+    # TODO: add defaults / base_fields
+    REQUIRED_FIELDS = POPUP_FIELDS.split(",") + BASE_FIELDS.split(";")
+    MAPBOX_KEY = os.getenv("MAPBOX_KEY", '')
     TABLE_NAME = os.environ["AIRTABLE_TABLE"]
-    MAPBOX_KEY = os.environ["MAPBOX_KEY"]
     AIRTABLE_LINK = os.getenv("AIRTABLE_LINK", '')
     AIRTABLE_FORM = os.getenv("AIRTABLE_FORM", '')
     at = airtable.Airtable(
@@ -37,7 +37,7 @@ def fetch_data():
     g.items = {}
     for r in at.iterate(TABLE_NAME):
         record = r['fields']
-        if SORT_KEY is None:
+        if not SORT_KEY:
             sort_value = r['id']
         else:
             sort_value = record[SORT_KEY]
@@ -91,7 +91,10 @@ def item_detail(key):
 @app.route('/')
 @app.route('/app')
 def route_index():
-    return render_template('index.html')
+    if MAPBOX_KEY:
+        return render_template('map.html')
+    else:
+        return render_template('gallery.html')
 
 @app.route('/refresh')
 def route_refresh():

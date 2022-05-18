@@ -113,7 +113,7 @@ function getColor(d) {
 
 
 
-fetch('static/popup.mustache')
+fetch('static/widgets/popup.mustache')
 .then((response) => response.text())
 .then((template) => {
         $.get("/items", function(data) {
