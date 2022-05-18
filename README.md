@@ -33,7 +33,7 @@ Points on the map for each row along with a details popup on tap are shown. Righ
 
 The following environment keys can be used to configure this project:
 
-- `MAPBOX_KEY` get an access token [here](https://docs.mapbox.com/api/#access-tokens-and-token-scopes) or [here](view-source:https://leafletjs.com/examples/choropleth/example.html) for the base layer
+- `MAPBOX_KEY` get an access [token here](https://docs.mapbox.com/api/#access-tokens-and-token-scopes)
 - `AIRTABLE_BASE`, `AIRTABLE_TABLE` and `AIRTABLE_KEY` from the [Airtable API](https://airtable.com/api)
 - `AIRTABLE_FORM` (optional) is the URL of the shared add (Form) view
 - `AIRTABLE_LINK` (optional) is the URL of the shared detail (Gallery) view

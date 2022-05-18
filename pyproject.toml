@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "standort-app"
-version = "0.1.1"
+version = "0.1.2"
 description = "A portable API for Airtables"
 authors = ["Oleg Lavrovsky <oleg@datalets.ch>"]
 
@@ -8,6 +8,6 @@ authors = ["Oleg Lavrovsky <oleg@datalets.ch>"]
 python = ">=3.6,<4"
 gunicorn = "*"
 python-dotenv = "*"
-flask_api = "^2.0"
-Airtable = "^0.3.1"
+flask_api = "*"
+Airtable = "*"
 urllib3 = ">=1.24.2"
