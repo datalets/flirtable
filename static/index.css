@@ -27,7 +27,8 @@ header .logo {
   height: 40px; width: 360px;
   text-align: right;
   padding: 8px;
-  background: #fff url('UD_logo.svg') no-repeat top left;
+  background: #fff no-repeat top left;
+  /* background-image: url(...your logo...); */
   background-size: contain;
   border: 10px solid white;
   text-decoration: none;
@@ -123,12 +124,12 @@ header nav a {
   line-height: 35px;
   color: #777;
 }
-.leaflet-control-layers{ 
+.leaflet-control-layers{
   background:#ec5d60 !important;
-  color:white !important; 
+  color:white !important;
 }
-.leaflet-control-layers-expanded { 
-  opacity:0.85 !important; 
+.leaflet-control-layers-expanded {
+  opacity:0.85 !important;
 }
 .leaflet-control-layers-toggle {background-image: url(layers.png)
 }

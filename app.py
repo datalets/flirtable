@@ -16,6 +16,8 @@ load_dotenv()
 
 try:
     SORT_KEY = os.getenv("SORT_KEY", None)
+    BASE_FIELDS = os.getenv("BASE_FIELDS", '')
+    BASE_FIELDS = BASE_FIELDS.split(",")
     POPUP_FIELDS = os.getenv("POPUP_FIELDS", '')
     REQUIRED_FIELDS = POPUP_FIELDS.split(",")
     TABLE_NAME = os.environ["AIRTABLE_TABLE"]
@@ -56,6 +58,7 @@ app = FlaskAPI(__name__, static_url_path='/static')
 
 app.config.update(
     MAPBOX_KEY=MAPBOX_KEY,
+    BASE_FIELDS=BASE_FIELDS,
     POPUP_FIELDS=POPUP_FIELDS,
     AIRTABLE_LINK=AIRTABLE_LINK,
     AIRTABLE_FORM=AIRTABLE_FORM,

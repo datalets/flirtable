@@ -1,8 +1,7 @@
 {
-  "name": "Standort app",
-  "description": "",
-  "repository": "https://github.com/loleg/standortanalyse",
-  "logo": "https://github.com/streetwise/streetwise-app/raw/master/src/assets/streetwise_Logo.png",
+  "name": "Flirtable",
+  "description": "Take your data to the air, with flair.",
+  "repository": "https://github.com/datalets/flirtable",
   "keywords": [],
   "env": {
     "FLASK_ENV": {
@@ -24,14 +23,17 @@
     "AIRTABLE_FORM": {
       "description": "Add more form link"
     },
-    "SORT_KEY": {
-      "description": "Field name to sort on"
+    "MAPBOX_KEY": {
+      "description": "Mapbox API key"
+    },
+    "BASE_FIELDS": {
+      "description": "Semicolon-separated column name=value mappings"
     },
     "POPUP_FIELDS": {
       "description": "Comma-delimited list of columns shown in popup"
     },
-    "MAPBOX_KEY": {
-      "description": "Mapbox API key"
+    "SORT_KEY": {
+      "description": "Field name to sort on"
     }
    },
   "buildpacks": [
