@@ -24,8 +24,9 @@ try:
     SORT_KEY = os.getenv("SORT_KEY", None)
     BASE_FIELDS = os.getenv("BASE_FIELDS", '')
     POPUP_FIELDS = os.getenv("POPUP_FIELDS", '')
-    # TODO: add defaults / base_fields
-    REQUIRED_FIELDS = POPUP_FIELDS.split(",") + BASE_FIELDS.split(";")
+    REQUIRED_FIELDS = POPUP_FIELDS.split(",")
+    for bf in BASE_FIELDS.split(";"):
+        REQUIRED_FIELDS.append(bf.split("=")[1])
     MAPBOX_KEY = os.getenv("MAPBOX_KEY", '')
     TABLE_NAME = os.environ["AIRTABLE_TABLE"]
     AIRTABLE_LINK = os.getenv("AIRTABLE_LINK", '')
@@ -58,7 +59,7 @@ cache.init_app(app)
 
 
 @app.route("/items", methods=['GET'])
-@cache.cached(timeout=50)
+@cache.cached(timeout=250)
 def items_list():
     """
     List sorted items
@@ -70,7 +71,7 @@ def items_list():
 
 
 @app.route("/detail/<key>/", methods=['GET'])
-@cache.cached(timeout=50)
+@cache.cached(timeout=250)
 def item_detail(key):
     """
     Retrieve instances
@@ -82,7 +83,7 @@ def item_detail(key):
 
 @app.route('/')
 @app.route('/app')
-@cache.cached(timeout=250)
+# @cache.cached(timeout=250)
 def route_index():
     if MAPBOX_KEY:
         return render_template('map.html')

@@ -7,35 +7,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/x-icon" href="static/favicon.png">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" integrity="sha512-wnea99uKIC3TJF7v4eKk4Y+lMz2Mklv18+r4na2Gn1abDRPPOeef95xTzdwGD9e6zXJBteMIhZ1+68QC5byJZw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="static/index.css" />
 
 </head>
 <body>
 
     <header>
-    {% if config.LOGO_URL %}
+      {% if config.LOGO_URL %}
         <a class="logo" href="{{ config.LOGO_URL }}">
-            <div class="title">Flirtable</div>
+          <div class="title">Flirtable</div>
         </a>
-    {% endif %}
-    <nav>
-    {% if config.AIRTABLE_FORM %}
+      {% endif %}
+      <nav>
+      {% if config.AIRTABLE_FORM %}
         <a class="btn" href="{{ config.AIRTABLE_FORM }}" target="_blank">&#x25BC;&nbsp;Contribute</a>
-    {% endif %}
-    {% if config.MAPBOX_KEY %}
-        <!-- <a class="btn" href="/refresh">&#8635;&nbsp;Refresh</a> -->
+      {% endif %}
+      {% if config.MAPBOX_KEY %}
         <a class="btn" href="#" id="geolocate" title="Center on my location">&#8858;</a>
-    {% endif %}
-    </nav>
+      {% endif %}
+        <a class="btn" href="/refresh">&#8635;</a>
+      </nav>
     </header>
 
-    <div id="gallery" tabindex="0" style="position: relative;"></div>
+    <div id="gallery" class="flex flex-wrap" tabindex="0"></div>
 
 </body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js" integrity="sha512-BrvVYNhKh6yST24E5DY/LopLO5d+8KYmIXyrpBIJ2PK+CyyJw/cLSG/BfJomWLC1IblNrmiJWGlrGueKLd/Ekw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.1.0/mustache.min.js" integrity="sha512-HYiNpwSxYuji84SQbCU5m9kHEsRqwWypXgJMBtbRSumlx1iBB6QaxgEBZHSHEGM+fKyCX/3Kb5V5jeVXm0OglQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
 var BASE_FIELDS = "{{ config.BASE_FIELDS }}".split(';');
@@ -52,7 +54,8 @@ var fieldMap = {
     'Category': 'Category',
     'Details':  'Details',
     'Link':     'Link',
-    'Images':   'Images'
+    'Images':   'Images',
+    'Date':     'Date'
 };
 BASE_FIELDS.forEach((item) => {
     kv = item.split('=');
@@ -77,6 +80,7 @@ fetch('static/widgets/gallery.mustache')
             // Parse essential fields
             rowdata = {
                 fields: [],
+                moment: row.data[fieldMap['Date']] ? moment(row.data[fieldMap['Date']]).format('MMM d') : null,
                 title: row.data[fieldMap['Title']],
                 address: row.data[fieldMap['Placename']],
                 summary: row.data[fieldMap['Summary']],
@@ -114,15 +118,6 @@ fetch('static/widgets/gallery.mustache')
         }); // -forEach
     }); // -get(data)
 }); // -fetch template
-
-// For fields with links that open contents in a dialog
-function fulltextLink(e) {
-    var fulltext = $(e).parent().find('hide');
-    swal("Notizen",fulltext.html().replace(/&amp;/g, '&'))
-    $(".swal-modal").css("font-family", "helvetica, sans-serif")
-    $(".swal-text").css("margin", "10px")
-    $(".swal-text").css("font-size", "22px")
-}
 
 </script>
 

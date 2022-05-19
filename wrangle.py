@@ -10,6 +10,7 @@ def fetch_data(at):
     REQ_FIELDS = current_app.config.get('REQUIRED_FIELDS')
     items = {}
     print("Fetching remote data")
+    invalid_entry = None
     for r in at.iterate(TABLE_NAME):
         record = r['fields']
         if not SORT_KEY:
@@ -18,6 +19,12 @@ def fetch_data(at):
             sort_value = record[SORT_KEY]
         if valid_entry(record, REQ_FIELDS):
             items[sort_value] = record
+        else:
+            invalid_entry = record
+    if invalid_entry is not None:
+        print(REQ_FIELDS)
+        print(invalid_entry)
+        print("(-- Check your data! --)")
     return items
 
 
