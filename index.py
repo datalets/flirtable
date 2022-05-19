@@ -1,18 +1,24 @@
 #! /usr/bin/env python3
 
+from wrangle import (
+    fetch_data,
+    item_repr,
+)
 from flask import (
-    request, url_for,
     send_from_directory,
     render_template,
-    redirect, g
+    redirect, request,
+    g
 )
 from flask_api import FlaskAPI, exceptions
+from flask_caching import Cache
 from airtable import airtable
 
 import os
 
 from dotenv import load_dotenv
 load_dotenv()
+
 
 try:
     SORT_KEY = os.getenv("SORT_KEY", None)
@@ -33,71 +39,50 @@ except KeyError:
     exit(1)
 
 
-def fetch_data():
-    """ Collect remote data """
-    g.items = {}
-    for r in at.iterate(TABLE_NAME):
-        record = r['fields']
-        if not SORT_KEY:
-            sort_value = r['id']
-        else:
-            sort_value = record[SORT_KEY]
-        if valid_entry(record):
-            g.items[sort_value] = record
-
-
-def valid_entry(entry):
-    """ Validate the row """
-    if len(REQUIRED_FIELDS) == 0 or REQUIRED_FIELDS[0] == '':
-        return True
-    for value in REQUIRED_FIELDS:
-        if value not in entry or not entry[value]:
-            return False
-    return True
-
-
 # Set up the Flask App
 app = FlaskAPI(__name__, static_url_path='/static')
 
 app.config.update(
+    SORT_KEY=SORT_KEY,
     MAPBOX_KEY=MAPBOX_KEY,
     BASE_FIELDS=BASE_FIELDS,
     POPUP_FIELDS=POPUP_FIELDS,
+    REQUIRED_FIELDS=REQUIRED_FIELDS,
     AIRTABLE_LINK=AIRTABLE_LINK,
     AIRTABLE_FORM=AIRTABLE_FORM,
+    TABLE_NAME=TABLE_NAME,
 )
 
-
-def item_repr(key):
-    return {
-        'id': key,
-        'url': request.host_url.rstrip('/') + url_for('item_detail', key=key),
-        'data': g.items[key]
-    }
+cache = Cache(config={'CACHE_TYPE': 'SimpleCache'})
+cache.init_app(app)
 
 
 @app.route("/items", methods=['GET'])
+@cache.cached(timeout=50)
 def items_list():
     """
     List sorted items
     """
-    if 'items' not in g or not g.items:
-        fetch_data()
-    return [item_repr(idx) for idx in sorted(g.items.keys())]
+    if not g.get('items', False):
+        g.items = fetch_data(at)
+    return [item_repr(g.items, idx, request.host_url)
+            for idx in sorted(g.items.keys())]
 
 
 @app.route("/detail/<key>/", methods=['GET'])
+@cache.cached(timeout=50)
 def item_detail(key):
     """
     Retrieve instances
     """
     if key not in g.items:
         raise exceptions.NotFound()
-    return item_repr(key)
+    return item_repr(g.items, key, request.host_url)
 
 
 @app.route('/')
 @app.route('/app')
+@cache.cached(timeout=250)
 def route_index():
     if MAPBOX_KEY:
         return render_template('map.html')
@@ -107,7 +92,7 @@ def route_index():
 
 @app.route('/refresh')
 def route_refresh():
-    fetch_data()
+    g.items = fetch_data(at)
     return redirect("/", code=302)
 
 
