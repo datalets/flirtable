@@ -73,7 +73,7 @@ Or through the environment variables on Vercel:
 | `/data`                 | Sample data structure                |
 | `/static`               | Frontend resources                   |
 | `/templates`            | Web templates                        |
-| `/app.py`               | Flask API (`/api`)                   |
+| `/index.py`             | Flask API (`/api`)                   |
 
 # Contributing
 
@@ -81,7 +81,7 @@ First, clone this repository and make sure to set up the following dependencies:
 
 - [X] [Python 3](https://python.org)
 - [X] [Poetry](https://python-poetry.org/docs/)
-- [X] [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) (optional)
+- [X] [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) or [Vercel CLI](https://vercel.com/download) (optional)
 
 Setup a virtual environment, install dependencies, and activate it using Poetry:
 
