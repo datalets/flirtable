@@ -126,7 +126,9 @@ We are using poetry (and GitHub bots) to keep this project up to date. To check 
 
 Heroku's buildpack currently does not support loading Python dependencies from poetry automatically. [We're working on it](https://github.com/heroku/heroku-buildpack-python/issues/796#issuecomment-611198469) ... in the meantime, please remember to run this command after upgrading dependencies:
 
-`poetry export -f requirements.txt > requirements.txt`
+`poetry export -f requirements.txt --without-hashes > requirements.txt`
+
+(* If you include hashes, vercel complains about setuptools)
 
 # History
 
