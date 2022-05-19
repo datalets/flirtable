@@ -1,6 +1,6 @@
 [tool.poetry]
-name = "standort-app"
-version = "0.1.2"
+name = "flirtable"
+version = "0.2.0"
 description = "A portable API for Airtables"
 authors = ["Oleg Lavrovsky <oleg@datalets.ch>"]
 

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html><head>
+
+    <title>Flirtable</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="static/favicon.png">
+
+    <link rel="stylesheet" href="static/index.css" />
+
+</head>
+<body>
+
+    <header>
+    {% if config.LOGO_URL %}
+        <a class="logo" href="{{ config.LOGO_URL }}">
+            <div class="title">Flirtable</div>
+        </a>
+    {% endif %}
+    <nav>
+    {% if config.AIRTABLE_FORM %}
+        <a class="btn" href="{{ config.AIRTABLE_FORM }}" target="_blank">&#x25BC;&nbsp;Contribute</a>
+    {% endif %}
+    {% if config.MAPBOX_KEY %}
+        <!-- <a class="btn" href="/refresh">&#8635;&nbsp;Refresh</a> -->
+        <a class="btn" href="#" id="geolocate" title="Center on my location">&#8858;</a>
+    {% endif %}
+    </nav>
+    </header>
+
+    <div id="gallery" tabindex="0" style="position: relative;"></div>
+
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js" integrity="sha512-BrvVYNhKh6yST24E5DY/LopLO5d+8KYmIXyrpBIJ2PK+CyyJw/cLSG/BfJomWLC1IblNrmiJWGlrGueKLd/Ekw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.1.0/mustache.min.js" integrity="sha512-HYiNpwSxYuji84SQbCU5m9kHEsRqwWypXgJMBtbRSumlx1iBB6QaxgEBZHSHEGM+fKyCX/3Kb5V5jeVXm0OglQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+var BASE_FIELDS = "{{ config.BASE_FIELDS }}".split(';');
+var POPUP_FIELDS = "{{ config.POPUP_FIELDS }}".split(',');
+var BASE_DETAIL_URL = '{{ config.AIRTABLE_LINK }}';
+var MAX_FIELD_LENGTH = 100;
+
+var fieldMap = {
+    'Title':    'Title',
+    'Summary':  'Summary',
+    'Placename':'Placename',
+    'Lat':      'Lat',
+    'Lon':      'Lon',
+    'Category': 'Category',
+    'Details':  'Details',
+    'Link':     'Link',
+    'Images':   'Images'
+};
+BASE_FIELDS.forEach((item) => {
+    kv = item.split('=');
+    if (kv.length < 2) return;
+    fieldMap[kv[0]] = kv[1].trim();
+});
+
+fetch('static/widgets/gallery.mustache')
+.then((response) => response.text())
+.then((template) => {
+    $.get("/items", function(data) {
+        var rowdata;
+        var $container = $('#gallery');
+
+        data.forEach(function(row) {
+            // console.debug("Row:", row);
+
+            // Check data completeness
+            if (!row.data[fieldMap['Title']]) return;
+            const bilder = row.data[fieldMap['Images']];
+
+            // Parse essential fields
+            rowdata = {
+                fields: [],
+                title: row.data[fieldMap['Title']],
+                address: row.data[fieldMap['Placename']],
+                summary: row.data[fieldMap['Summary']],
+                detailurl: row.data[fieldMap['Link']] ? row.data[fieldMap['Link']] : (
+                    BASE_DETAIL_URL == '' ? null :
+                        BASE_DETAIL_URL + '/' + row.id + '?blocks=hide'
+                    ),
+                imageurl: (!bilder || bilder.length == 0) ? false :
+                    bilder[0].url
+            };
+
+            // Set up data for the popup
+            POPUP_FIELDS.forEach(function(f) {
+                var v = row.data[f], fulltext = null;
+                if (['string', 'number'].indexOf(typeof v)<0) {
+                    return console.log('Skipping object field', f);
+                }
+                if (typeof v == 'string' && v.length > MAX_FIELD_LENGTH) {
+                    fulltext = v;
+                    v = v.replace(new RegExp("(.{1," + MAX_FIELD_LENGTH + "})(?:\s|$)"), "$1\n");
+                    v = v.split('\n')[0];
+                }
+                rowdata.fields.push({
+                    id: f.toLowerCase().replace(' ', '-'),
+                    name: f,
+                    data: v,
+                    fulltext: fulltext,
+                })
+            });
+
+            $container.append(
+                // Prepare HTML for the pop-up
+                Mustache.render(template, rowdata)
+            );
+        }); // -forEach
+    }); // -get(data)
+}); // -fetch template
+
+// For fields with links that open contents in a dialog
+function fulltextLink(e) {
+    var fulltext = $(e).parent().find('hide');
+    swal("Notizen",fulltext.html().replace(/&amp;/g, '&'))
+    $(".swal-modal").css("font-family", "helvetica, sans-serif")
+    $(".swal-text").css("margin", "10px")
+    $(".swal-text").css("font-size", "22px")
+}
+
+</script>
+
+</html>
