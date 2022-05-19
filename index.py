@@ -6,10 +6,10 @@ from flask import (
     render_template,
     redirect, g
 )
-from flask_api import FlaskAPI, status, exceptions
+from flask_api import FlaskAPI, exceptions
 from airtable import airtable
 
-import json, os
+import os
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -32,6 +32,7 @@ except KeyError:
     print("Environment not ready: see README for required keys")
     exit(1)
 
+
 def fetch_data():
     """ Collect remote data """
     g.items = {}
@@ -44,6 +45,7 @@ def fetch_data():
         if valid_entry(record):
             g.items[sort_value] = record
 
+
 def valid_entry(entry):
     """ Validate the row """
     if len(REQUIRED_FIELDS) == 0 or REQUIRED_FIELDS[0] == '':
@@ -52,6 +54,7 @@ def valid_entry(entry):
         if value not in entry or not entry[value]:
             return False
     return True
+
 
 # Set up the Flask App
 app = FlaskAPI(__name__, static_url_path='/static')
@@ -64,6 +67,7 @@ app.config.update(
     AIRTABLE_FORM=AIRTABLE_FORM,
 )
 
+
 def item_repr(key):
     return {
         'id': key,
@@ -71,13 +75,16 @@ def item_repr(key):
         'data': g.items[key]
     }
 
+
 @app.route("/items", methods=['GET'])
 def items_list():
     """
     List sorted items
     """
-    if not 'items' in g or not g.items: fetch_data()
+    if 'items' not in g or not g.items:
+        fetch_data()
     return [item_repr(idx) for idx in sorted(g.items.keys())]
+
 
 @app.route("/detail/<key>/", methods=['GET'])
 def item_detail(key):
@@ -88,6 +95,7 @@ def item_detail(key):
         raise exceptions.NotFound()
     return item_repr(key)
 
+
 @app.route('/')
 @app.route('/app')
 def route_index():
@@ -96,14 +104,17 @@ def route_index():
     else:
         return render_template('gallery.html')
 
+
 @app.route('/refresh')
 def route_refresh():
     fetch_data()
     return redirect("/", code=302)
 
+
 @app.route('/static/<path:path>')
 def route_static(path):
     return send_from_directory('static', path)
+
 
 if __name__ == "__main__":
     app.run(debug=True)

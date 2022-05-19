@@ -90,7 +90,7 @@ $ poetry shell
 $ poetry install
 ```
 
-Create a file called `.flaskenv` in the root folder and add development settings and required keys from the Configuration section above - for example:
+Create a file called `.flaskenv` (or `.env` if using gunicorn in production) in the root folder and add development settings and required keys from the Configuration section above - for example:
 
 ```
 POPUP_FIELDS=Kategorie,Eingetragen,Notizen,Relevanz
@@ -103,6 +103,8 @@ AIRTABLE_LINK=https://airtable.com/shr...
 AIRTABLE_FORM=https://airtable.com/shr...
 
 MAPBOX_KEY=pk...
+
+FLASK_APP=index.py
 
 # When not in production:
 FLASK_ENV=development
