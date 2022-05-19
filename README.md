@@ -93,17 +93,20 @@ $ poetry install
 Create a file called `.flaskenv` (or `.env` if using gunicorn in production) in the root folder and add development settings and required keys from the Configuration section above - for example:
 
 ```
-POPUP_FIELDS=Kategorie,Eingetragen,Notizen,Relevanz
-SORT_KEY=Kategorie
+BASE_FIELDS="Title=Name;Summary=Headline;Link=URL;Images=Logo"
+POPUP_FIELDS=Category,Details,Relevance
+SORT_KEY=Headline
 
 AIRTABLE_BASE=...
 AIRTABLE_KEY=...
-AIRTABLE_TABLE=Standorte
+AIRTABLE_TABLE=...
+
 AIRTABLE_LINK=https://airtable.com/shr...
 AIRTABLE_FORM=https://airtable.com/shr...
 
 MAPBOX_KEY=pk...
 
+# Required to use Flask cli
 FLASK_APP=index.py
 
 # When not in production:
