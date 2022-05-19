@@ -13,20 +13,20 @@
 <body>
 
     <header>
-		{% if config.LOGO %}
-	        <a class="logo" href="#">
-	            <div class="title">Flirtable</div>
-	        </a>
-		{% endif %}
-        <nav>
-            {% if config.AIRTABLE_FORM %}
-                <a class="btn" href="{{ config.AIRTABLE_FORM }}" target="_blank">&#x25BC;&nbsp;Contribute</a>
-            {% endif %}
-			{% if config.MAPBOX_KEY %}
-	            <!-- <a class="btn" href="/refresh">&#8635;&nbsp;Refresh</a> -->
-	            <a class="btn" href="#" id="geolocate" title="Center on my location">&#8858;</a>
-			{% endif %}
-        </nav>
+    {% if config.LOGO_URL %}
+        <a class="logo" href="{{ config.LOGO_URL }}">
+            <div class="title">Flirtable</div>
+        </a>
+    {% endif %}
+    <nav>
+    {% if config.AIRTABLE_FORM %}
+        <a class="btn" href="{{ config.AIRTABLE_FORM }}" target="_blank">&#x25BC;&nbsp;Contribute</a>
+    {% endif %}
+    {% if config.MAPBOX_KEY %}
+        <!-- <a class="btn" href="/refresh">&#8635;&nbsp;Refresh</a> -->
+        <a class="btn" href="#" id="geolocate" title="Center on my location">&#8858;</a>
+    {% endif %}
+    </nav>
     </header>
 
     <div id="gallery" tabindex="0" style="position: relative;"></div>
@@ -56,72 +56,73 @@ var fieldMap = {
 };
 BASE_FIELDS.forEach((item) => {
     kv = item.split('=');
-	if (kv.length < 2) return;
+    if (kv.length < 2) return;
     fieldMap[kv[0]] = kv[1].trim();
 });
 
 fetch('static/widgets/gallery.mustache')
 .then((response) => response.text())
 .then((template) => {
-        $.get("/items", function(data) {
-            var rowdata;
-			var $container = $('#gallery');
+    $.get("/items", function(data) {
+        var rowdata;
+        var $container = $('#gallery');
 
-            data.forEach(function(row) {
-                console.debug("Row:", row);
-				
-				if (!row.data[fieldMap['Title']]) return;
-				const bilder = row.data[fieldMap['Images']];
+        data.forEach(function(row) {
+            // console.debug("Row:", row);
 
-                // Parse essential fields
-                rowdata = {
-                    fields: [],
-                    title: row.data[fieldMap['Title']],
-                    address: row.data[fieldMap['Placename']],
-                    summary: row.data[fieldMap['Summary']],
-                    detailurl: row.data[fieldMap['Link']] ? row.data[fieldMap['Link']] : (
-                        BASE_DETAIL_URL == '' ? null :
-                            BASE_DETAIL_URL + '/' + row.id + '?blocks=hide'
-                        ),
-                    imageurl: (!bilder || bilder.length == 0) ? false :
-                        bilder[0].url
-                };
+            // Check data completeness
+            if (!row.data[fieldMap['Title']]) return;
+            const bilder = row.data[fieldMap['Images']];
 
-                // Set up data for the popup
-                POPUP_FIELDS.forEach(function(f) {
-                    var v = row.data[f], fulltext = null;
-                    if (['string', 'number'].indexOf(typeof v)<0) {
-                        return console.log('Skipping object field', f);
-                    }
-                    if (typeof v == 'string' && v.length > MAX_FIELD_LENGTH) {
-                        fulltext = v;
-                        v = v.replace(new RegExp("(.{1," + MAX_FIELD_LENGTH + "})(?:\s|$)"), "$1\n");
-                        v = v.split('\n')[0];
-                    }
-                    rowdata.fields.push({
-                        id: f.toLowerCase().replace(' ', '-'),
-                        name: f,
-                        data: v,
-                        fulltext: fulltext,
-                    })
-                });
+            // Parse essential fields
+            rowdata = {
+                fields: [],
+                title: row.data[fieldMap['Title']],
+                address: row.data[fieldMap['Placename']],
+                summary: row.data[fieldMap['Summary']],
+                detailurl: row.data[fieldMap['Link']] ? row.data[fieldMap['Link']] : (
+                    BASE_DETAIL_URL == '' ? null :
+                        BASE_DETAIL_URL + '/' + row.id + '?blocks=hide'
+                    ),
+                imageurl: (!bilder || bilder.length == 0) ? false :
+                    bilder[0].url
+            };
 
-				$container.append(
-                    // Prepare HTML for the pop-up
-                    Mustache.render(template, rowdata)
-                );
-            }); // -forEach
-        }); // -get(data)
-    }); // -fetch template
+            // Set up data for the popup
+            POPUP_FIELDS.forEach(function(f) {
+                var v = row.data[f], fulltext = null;
+                if (['string', 'number'].indexOf(typeof v)<0) {
+                    return console.log('Skipping object field', f);
+                }
+                if (typeof v == 'string' && v.length > MAX_FIELD_LENGTH) {
+                    fulltext = v;
+                    v = v.replace(new RegExp("(.{1," + MAX_FIELD_LENGTH + "})(?:\s|$)"), "$1\n");
+                    v = v.split('\n')[0];
+                }
+                rowdata.fields.push({
+                    id: f.toLowerCase().replace(' ', '-'),
+                    name: f,
+                    data: v,
+                    fulltext: fulltext,
+                })
+            });
 
-    // For fields with links that open contents in a dialog
-    function fulltextLink(e) {
-        var fulltext = $(e).parent().find('hide');
-        swal("Notizen",fulltext.html().replace(/&amp;/g, '&'))
-        $(".swal-modal").css("font-family", "helvetica, sans-serif")
-        $(".swal-text").css("margin", "10px")
-        $(".swal-text").css("font-size", "22px")
-	}
+            $container.append(
+                // Prepare HTML for the pop-up
+                Mustache.render(template, rowdata)
+            );
+        }); // -forEach
+    }); // -get(data)
+}); // -fetch template
+
+// For fields with links that open contents in a dialog
+function fulltextLink(e) {
+    var fulltext = $(e).parent().find('hide');
+    swal("Notizen",fulltext.html().replace(/&amp;/g, '&'))
+    $(".swal-modal").css("font-family", "helvetica, sans-serif")
+    $(".swal-text").css("margin", "10px")
+    $(".swal-text").css("font-size", "22px")
+}
 
 </script>
 
