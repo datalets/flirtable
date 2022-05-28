@@ -82,12 +82,16 @@ def items_search():
     gfilter = []
     for idx in sorted(g.items.keys()):
         gk = g.items[idx]
+        matching = False
         for fld in gk.keys():
             if isinstance(gk[fld], str):
                 if q.lower() in gk[fld].lower():
-                    gfilter.append(item_repr(
-                        gk, idx, request.host_url
-                    ))
+                    matching = True
+                    break
+        if matching:
+            gfilter.append(item_repr(
+                gk, idx, request.host_url
+            ))
     return gfilter
 
 
