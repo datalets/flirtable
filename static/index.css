@@ -1,8 +1,12 @@
 html, body {
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   height: 100%;
   margin: 0;
   padding: 0;
+}
+body {
+  filter: invert(100%); background: black none repeat scroll 0% 0%; height: 100%;
 }
 #map {
   height: 100%; width: 100vw;
@@ -39,8 +43,11 @@ header .title {
   padding-top: 0px;
 }
 header nav {
-  float: right;
   padding: 10px;
+  position: fixed;
+  bottom: 15px;
+  width: 100%;
+  text-align: center;
 }
 header nav a {
   margin: 5px;
@@ -74,17 +81,13 @@ header nav a {
   background-color: #D2DAB1;
 }
 
-
-
-
-
 .minipic {
   border-radius: 50%;    /* Make it a circle */
   margin: 0 auto;        /* Center horizontally */
   height: 50px; width: auto;
   padding-right: 1em;
 }
-.btn {
+.map .btn {
   background: #ff505a;
   box-shadow: 3px 3px 3px lightgrey;
   text-decoration: none;
@@ -92,10 +95,10 @@ header nav a {
   border-radius: 7px;
   padding: 5px 7px 2px;
 }
-.btn:visited, .btn:active {
+.map .btn:visited, .map .btn:active {
   color: #eee;
 }
-.btn:hover {
+.map .btn:hover {
   color: #fff;
 }
 .popup .address,

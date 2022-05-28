@@ -11,8 +11,9 @@
     <link rel="stylesheet" href="static/index.css" />
 
 </head>
-<body>
+<body class="gallery">
 
+  <hide>
     <header>
       {% if config.LOGO_URL %}
         <a class="logo" href="{{ config.LOGO_URL }}">
@@ -21,16 +22,20 @@
       {% endif %}
       <nav>
       {% if config.AIRTABLE_FORM %}
-        <a class="btn" href="{{ config.AIRTABLE_FORM }}" target="_blank">&#x25BC;&nbsp;Contribute</a>
+        <a href="{{ config.AIRTABLE_FORM }}" target="_blank"><button class="btn">&#x25BC;&nbsp;Contribute</button></a>
       {% endif %}
       {% if config.MAPBOX_KEY %}
-        <a class="btn" href="#" id="geolocate" title="Center on my location">&#8858;</a>
+        <a href="#" id="geolocate" title="Center on my location"><button class="btn bg-blue-500">&#8858;</button></a>
       {% endif %}
-        <a class="btn" href="/refresh">&#8635;</a>
+      {% if nextpage %}
+        <a href="{{ nextpage }}"><button class="bg-gray-500 hover:bg-gray-700 text-white p-2 rounded">&#9654; More ...</button></a>
+      {% endif %}
+        <a href="/refresh"><button class="bg-gray-500 hover:bg-gray-700 text-white p-2 rounded">&#8635;</button></a>
       </nav>
     </header>
+  </hide>
 
-    <div id="gallery" class="flex flex-wrap" tabindex="0"></div>
+  <div id="gallery" class="flex flex-wrap" tabindex="0"></div>
 
 </body>
 
@@ -46,77 +51,77 @@ var BASE_DETAIL_URL = '{{ config.AIRTABLE_LINK }}';
 var MAX_FIELD_LENGTH = 100;
 
 var fieldMap = {
-    'Title':    'Title',
-    'Summary':  'Summary',
-    'Placename':'Placename',
-    'Lat':      'Lat',
-    'Lon':      'Lon',
-    'Category': 'Category',
-    'Details':  'Details',
-    'Link':     'Link',
-    'Images':   'Images',
-    'Date':     'Date'
+'Title':    'Title',
+'Summary':  'Summary',
+'Placename':'Placename',
+'Lat':      'Lat',
+'Lon':      'Lon',
+'Category': 'Category',
+'Details':  'Details',
+'Link':     'Link',
+'Images':   'Images',
+'Date':     'Date'
 };
 BASE_FIELDS.forEach((item) => {
-    kv = item.split('=');
-    if (kv.length < 2) return;
-    fieldMap[kv[0]] = kv[1].trim();
+kv = item.split('=');
+if (kv.length < 2) return;
+fieldMap[kv[0]] = kv[1].trim();
 });
 
 fetch('static/widgets/gallery.mustache')
 .then((response) => response.text())
 .then((template) => {
-    $.get("/items", function(data) {
-        var rowdata;
-        var $container = $('#gallery');
+  $.get("/items", function(data) {
+    var rowdata;
+    var $container = $('#gallery');
 
-        data.forEach(function(row) {
-            // console.debug("Row:", row);
+    data.forEach(function(row) {
+      // console.debug("Row:", row);
 
-            // Check data completeness
-            if (!row.data[fieldMap['Title']]) return;
-            const bilder = row.data[fieldMap['Images']];
+      // Check data completeness
+      if (!row.data[fieldMap['Title']]) return;
+      const bilder = row.data[fieldMap['Images']];
 
-            // Parse essential fields
-            rowdata = {
-                fields: [],
-                moment: row.data[fieldMap['Date']] ? moment(row.data[fieldMap['Date']]).format('MMM d') : null,
-                title: row.data[fieldMap['Title']],
-                address: row.data[fieldMap['Placename']],
-                summary: row.data[fieldMap['Summary']],
-                detailurl: row.data[fieldMap['Link']] ? row.data[fieldMap['Link']] : (
-                    BASE_DETAIL_URL == '' ? null :
-                        BASE_DETAIL_URL + '/' + row.id + '?blocks=hide'
-                    ),
-                imageurl: (!bilder || bilder.length == 0) ? false :
-                    bilder[0].url
-            };
+      // Parse essential fields
+      rowdata = {
+          fields: [],
+          moment: row.data[fieldMap['Date']] ? moment(row.data[fieldMap['Date']]).format('MMM d') : null,
+          title: row.data[fieldMap['Title']],
+          address: row.data[fieldMap['Placename']],
+          summary: row.data[fieldMap['Summary']],
+          detailurl: row.data[fieldMap['Link']] ? row.data[fieldMap['Link']] : (
+              BASE_DETAIL_URL == '' ? null :
+                  BASE_DETAIL_URL + '/' + row.id + '?blocks=hide'
+              ),
+          imageurl: (!bilder || bilder.length == 0) ? false :
+              bilder[0].url
+      };
 
-            // Set up data for the popup
-            POPUP_FIELDS.forEach(function(f) {
-                var v = row.data[f], fulltext = null;
-                if (['string', 'number'].indexOf(typeof v)<0) {
-                    return console.log('Skipping object field', f);
-                }
-                if (typeof v == 'string' && v.length > MAX_FIELD_LENGTH) {
-                    fulltext = v;
-                    v = v.replace(new RegExp("(.{1," + MAX_FIELD_LENGTH + "})(?:\s|$)"), "$1\n");
-                    v = v.split('\n')[0];
-                }
-                rowdata.fields.push({
-                    id: f.toLowerCase().replace(' ', '-'),
-                    name: f,
-                    data: v,
-                    fulltext: fulltext,
-                })
-            });
+      // Set up data for the popup
+      POPUP_FIELDS.forEach(function(f) {
+          var v = row.data[f], fulltext = null;
+          if (['string', 'number'].indexOf(typeof v)<0) {
+              return console.log('Skipping object field', f);
+          }
+          if (typeof v == 'string' && v.length > MAX_FIELD_LENGTH) {
+              fulltext = v;
+              v = v.replace(new RegExp("(.{1," + MAX_FIELD_LENGTH + "})(?:\s|$)"), "$1\n");
+              v = v.split('\n')[0];
+          }
+          rowdata.fields.push({
+              id: f.toLowerCase().replace(' ', '-'),
+              name: f,
+              data: v,
+              fulltext: fulltext,
+          })
+      });
 
-            $container.append(
-                // Prepare HTML for the pop-up
-                Mustache.render(template, rowdata)
-            );
-        }); // -forEach
-    }); // -get(data)
+      $container.append(
+          // Prepare HTML for the pop-up
+          Mustache.render(template, rowdata)
+      );
+    }); // -forEach
+  }); // -get(data)
 }); // -fetch template
 
 </script>
