@@ -66,8 +66,29 @@ def items_list():
     """
     if not g.get('items', False):
         g.items = fetch_data(at)
-    return [item_repr(g.items, idx, request.host_url)
+    return [item_repr(g.items[idx], idx, request.host_url)
             for idx in sorted(g.items.keys())]
+
+
+@app.route("/search", methods=['GET'])
+def items_search():
+    """
+    Search by keyword
+    """
+    q = request.args.get('q')
+    print('Searching:', q)
+    if not g.get('items', False):
+        g.items = fetch_data(at)
+    gfilter = []
+    for idx in sorted(g.items.keys()):
+        gk = g.items[idx]
+        for fld in gk.keys():
+            if isinstance(gk[fld], str):
+                if q.lower() in gk[fld].lower():
+                    gfilter.append(item_repr(
+                        gk, idx, request.host_url
+                    ))
+    return gfilter
 
 
 @app.route("/detail/<key>/", methods=['GET'])

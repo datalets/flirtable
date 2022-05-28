@@ -38,9 +38,9 @@ def valid_entry(entry, REQUIRED_FIELDS):
     return True
 
 
-def item_repr(items, key, host_url):
+def item_repr(item, key, host_url):
     return {
         'id': key,
         'url': host_url.rstrip('/') + url_for('item_detail', key=key),
-        'data': items[key]
+        'data': item
     }
