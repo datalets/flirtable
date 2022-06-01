@@ -1,9 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;700&display=swap');
+
 html, body {
   overflow-x: hidden;
   overflow-y: auto;
   height: 100%;
   margin: 0;
   padding: 0;
+
+  font-family: 'League Spartan', sans-serif;
 }
 
 /* Dark mode */
@@ -60,20 +64,23 @@ header nav a {
 
 .item .fields .fld {
   font-size: 110%;
-  padding: 0.3em 0.6em;
+  padding: 0.3em 0.8em;
   border-radius: 0.5em;
-  margin-right: 0.5em;
+  margin-right: 0.2em;
   margin-bottom: 0.5em;
   display: inline-block;
 }
 .item .fields .fld:nth-child(1) {
-  background-color: #99D1E9;
+  background-color: #D5F6E8;
+  color: #60C398;
 }
 .item .fields .fld:nth-child(2) {
-  background-color: #9391C9;
+  background-color: #E8D3FF;
+  color: #956EC0;
 }
 .item .fields .fld:nth-child(3) {
-  background-color: #EEE0D0;
+  background-color: #BCE0FB;
+  color: #4F7795;
 }
 .item .fields .fld:nth-child(4) {
   background-color: #EEB4A7;
@@ -83,6 +90,10 @@ header nav a {
 }
 .item .fields .fld:nth-child(6) {
   background-color: #D2DAB1;
+}
+
+.fields.text-sm {
+  font-weight: 500;
 }
 
 .minipic {
