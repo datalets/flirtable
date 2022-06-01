@@ -17,25 +17,28 @@
       <!-- <div class="summary mt-4 text-slate-500">{{ summary }}</div> -->
       <div class="fields mt-4 text-sm">
       {{#fields}}
-        {{^fulltext}}
-          <div class="fld {{ id }}" title="{{ name }}">
-            {{ data }}
-          </div>
-        {{/fulltext}}
-        {{#fulltext}}
-          <div class="fld {{ id }}" title="{{ name }}">
-            {{ data }}
-            <a onclick="fulltextLink(this)">...</a>
-            <hide>{{ fulltext }}</hide>
-          </div>
-        {{/fulltext}}
-      {{/fields}}
-        <div class="fld work-load" title="Work load">
-              English
+        {{^fulllist}}
+          {{^fulltext}}
+            <div class="fld {{ id }}" title="{{ name }}">
+              <span>{{ data }}</span>
             </div>
-          <div class="fld work-load" title="Work load">
-                Hotellerie
-              </div>
+          {{/fulltext}}
+          {{#fulltext}}
+            <div class="fld {{ id }}" title="{{ name }}">
+              <span>
+                {{ data }}
+                <a onclick="fulltextLink(this)">...</a>
+                <hide>{{ fulltext }}</hide>
+              </span>
+            </div>
+          {{/fulltext}}
+        {{/fulllist}}
+        <div class="fld {{ id }}" title="{{ name }}">
+        {{#fulllist}}
+          <span>{{ . }}</span>
+        {{/fulllist}}
+        </div>
+      {{/fields}}
       </div>
     </div>
 

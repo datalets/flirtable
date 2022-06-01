@@ -62,7 +62,7 @@ header nav a {
   font-size: 125%;
 }
 
-.item .fields .fld {
+.item .fields .fld span {
   font-size: 110%;
   padding: 0.3em 0.8em;
   border-radius: 0.5em;
@@ -70,25 +70,25 @@ header nav a {
   margin-bottom: 0.5em;
   display: inline-block;
 }
-.item .fields .fld:nth-child(1) {
+.item .fields .fld:nth-child(1) span {
   background-color: #D5F6E8;
   color: #60C398;
 }
-.item .fields .fld:nth-child(2) {
+.item .fields .fld:nth-child(2) span {
   background-color: #E8D3FF;
   color: #956EC0;
 }
-.item .fields .fld:nth-child(3) {
+.item .fields .fld:nth-child(3) span {
   background-color: #BCE0FB;
   color: #4F7795;
 }
-.item .fields .fld:nth-child(4) {
+.item .fields .fld:nth-child(4) span {
   background-color: #EEB4A7;
 }
-.item .fields .fld:nth-child(5) {
+.item .fields .fld:nth-child(5) span {
   background-color: #BBA0CB;
 }
-.item .fields .fld:nth-child(6) {
+.item .fields .fld:nth-child(6) span {
   background-color: #D2DAB1;
 }
 

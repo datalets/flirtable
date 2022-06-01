@@ -103,19 +103,28 @@ function renderItems($container, data) {
 
     // Set up data for the popup
     POPUP_FIELDS.forEach(function(f) {
-        var v = row.data[f], fulltext = null;
-        if (['string', 'number'].indexOf(typeof v)<0) {
-            return console.log('Skipping object field', f);
-        }
-        if (typeof v == 'string' && v.length > MAX_FIELD_LENGTH) {
+        let v = row.data[f];
+        let fulltext = fulllist = null;
+        if (typeof v == 'number') {
+          // Number field - regional formatting?
+        } else if (typeof v == 'object' && v.length > 0) {
+          // Array
+          fulllist = v;
+          v = '';
+        } else if (typeof v == 'string') {
+          if (v.length > MAX_FIELD_LENGTH) {
             fulltext = v;
             v = v.replace(new RegExp("(.{1," + MAX_FIELD_LENGTH + "})(?:\s|$)"), "$1\n");
             v = v.split('\n')[0];
+          }
+        } else {
+          return console.warn('Skipping field', f, typeof v);
         }
         rowdata.fields.push({
             id: f.toLowerCase().replace(' ', '-'),
             name: f,
             data: v,
+            fulllist: fulllist,
             fulltext: fulltext,
         })
     });
