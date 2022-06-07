@@ -21,12 +21,11 @@ load_dotenv()
 
 
 try:
+    VERSION = os.getenv("VERCEL_GIT_COMMIT_SHA", 1)
     SORT_KEY = os.getenv("SORT_KEY", None)
     BASE_FIELDS = os.getenv("BASE_FIELDS", '')
     POPUP_FIELDS = os.getenv("POPUP_FIELDS", '')
-    REQUIRED_FIELDS = POPUP_FIELDS.split(",")
-    for bf in BASE_FIELDS.split(";"):
-        REQUIRED_FIELDS.append(bf.split("=")[1])
+    REQUIRED_FIELDS = os.getenv("REQUIRED_FIELDS", POPUP_FIELDS)
     MAPBOX_KEY = os.getenv("MAPBOX_KEY", '')
     TABLE_NAME = os.environ["AIRTABLE_TABLE"]
     AIRTABLE_LINK = os.getenv("AIRTABLE_LINK", '')
@@ -52,6 +51,7 @@ app.config.update(
     AIRTABLE_LINK=AIRTABLE_LINK,
     AIRTABLE_FORM=AIRTABLE_FORM,
     TABLE_NAME=TABLE_NAME,
+    VERSION=VERSION,
 )
 
 cache = Cache(config={'CACHE_TYPE': 'SimpleCache'})
