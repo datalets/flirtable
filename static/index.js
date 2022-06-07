@@ -20,8 +20,13 @@ BASE_FIELDS.forEach((item) => {
   fieldMap[kv[0]] = kv[1].trim();
 });
 
+const $gallery = $('#gallery');
+const $searchform = $('form#search');
+const $pagination = $('#pagination');
+let thePage = 1, perPage = 3, totalItems = 0;
+let originalData = null;
 
-function renderItems($container, data) {
+function renderItems(data) {
 
   data.forEach(function(row) {
     // console.debug("Row:", row);
@@ -77,11 +82,54 @@ function renderItems($container, data) {
         })
     });
 
-    $container.append(
+    $gallery.append(
       // Prepare HTML for the pop-up
       Mustache.render(galleryTemplate, rowdata)
     );
-  }); // -forEach
+  }); // -data.forEach
+
+  thePage = 1;
+  totalItems = data.length;
+  if (totalItems > perPage) {
+    $pagination.show();
+  } else {
+    $pagination.hide();
+  }
+  function setPageVisible() {
+    $gallery.children().each(function(ix) {
+      if (ix >= thePage * perPage || ix < (thePage-1) * perPage) {
+        $(this).hide();
+      } else {
+        $(this).show();
+      }
+    });
+  }
+  $pagination.find('a').click(function(e) {
+    e.preventDefault();
+    if ($(this).parent().hasClass('disabled')) return;
+
+    // Update page
+    if ($(this).parent().hasClass('page-next')) {
+      thePage++;
+    } else if ($(this).parent().hasClass('page-prev')) {
+      thePage--;
+    }
+
+    console.log(thePage, perPage, totalItems);
+
+    // Update visibility
+    $pagination.find('.page-next,.page-prev').removeClass('disabled');
+    if (thePage * perPage > totalItems) {
+      $pagination.find('.page-next').addClass('disabled');
+    }
+    if (thePage == 1) {
+      $pagination.find('.page-prev').addClass('disabled');
+    }
+
+    setPageVisible();
+  });
+  setPageVisible();
+
 } // -renderItems
 
 fetch('static/widgets/gallery.mustache')
@@ -91,10 +139,15 @@ fetch('static/widgets/gallery.mustache')
 
   $.get("/items", function(data) {
 
-    const $gallery = $('#gallery');
-    renderItems($gallery, data);
+    renderItems(data);
+    originalData = data;
 
-    const $searchform = $('form#search');
+    $searchform.find('.cancel-search').click(function(event) {
+      event.preventDefault();
+      $searchform.find('input').val('');
+      renderItems(originalData);
+    });
+
     $searchform.on('submit', function(event) {
       event.preventDefault();
       event.stopPropagation();
@@ -107,7 +160,7 @@ fetch('static/widgets/gallery.mustache')
 
       $.get("/search?q=" + q, function(data) {
         $gallery.empty();
-        renderItems($gallery, data);
+        renderItems(data);
       });
     })
   }); // -get(data)

@@ -192,3 +192,17 @@ header nav a {
 .leaflet-retina .leaflet-control-layers-toggle {
 background-image: url(layers-2x.png)
 }
+
+
+#pagination .disabled a {
+  color: grey;
+  cursor: default;
+}
+
+#search .cancel-search {
+  position: relative;
+  float: right;
+  width: 2em;
+  height: 0px;
+  top: 0.5em;
+}
