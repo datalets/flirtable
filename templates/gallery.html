@@ -8,7 +8,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="static/favicon.png">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" integrity="sha512-wnea99uKIC3TJF7v4eKk4Y+lMz2Mklv18+r4na2Gn1abDRPPOeef95xTzdwGD9e6zXJBteMIhZ1+68QC5byJZw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="static/index.css" />
+    <link rel="stylesheet" href="static/index.css?v=1" />
 
 </head>
 <body class="gallery">
@@ -67,6 +67,7 @@ let fieldMap = {
   'Category': 'Category',
   'Details':  'Details',
   'Link':     'Link',
+  'Name':     'Name',
   'Images':   'Images',
   'Date':     'Date'
 };
@@ -89,10 +90,11 @@ function renderItems($container, data) {
     // Parse essential fields
     let rowdata = {
         fields: [],
-        moment: row.data[fieldMap['Date']] ? moment(row.data[fieldMap['Date']]).format('MMM d') : null,
+        moment: row.data[fieldMap['Date']] ? moment(row.data[fieldMap['Date']]).format('MMM DD') : null,
         title: row.data[fieldMap['Title']],
         address: row.data[fieldMap['Placename']],
         summary: row.data[fieldMap['Summary']],
+        name: row.data[fieldMap['Name']],
         detailurl: row.data[fieldMap['Link']] ? row.data[fieldMap['Link']] : (
             BASE_DETAIL_URL == '' ? null :
                 BASE_DETAIL_URL + '/' + row.id + '?blocks=hide'
@@ -118,6 +120,9 @@ function renderItems($container, data) {
             v = v.split('\n')[0];
           }
         } else {
+          v = null; // skip unknown value
+        }
+        if (!v && !fulllist && !fulltext) {
           return console.warn('Skipping field', f, typeof v);
         }
         rowdata.fields.push({

@@ -15,7 +15,7 @@ def fetch_data(at):
         record = r['fields']
         if not SORT_KEY:
             sort_value = r['id']
-        else:
+        elif SORT_KEY in record:
             sort_value = record[SORT_KEY]
         if valid_entry(record, REQ_FIELDS):
             items[sort_value] = record
@@ -25,6 +25,7 @@ def fetch_data(at):
         print(REQ_FIELDS)
         print(invalid_entry)
         print("(-- Check your data! --)")
+    print("Loaded %d items" % len(items))
     return items
 
 
