@@ -96,6 +96,13 @@ header nav a {
   font-weight: 500;
 }
 
+.details .title.text-xl {
+  min-height: 3em;
+}
+.details .fields.text-sm {
+  min-height: 11em;
+}
+
 .minipic {
   border-radius: 50%;    /* Make it a circle */
   margin: 0 auto;        /* Center horizontally */

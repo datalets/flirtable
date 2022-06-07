@@ -6,9 +6,6 @@
         {{#imageurl}}
           <img class="h-12 w-12" src="{{ imageurl }}">
         {{/imageurl}}
-        {{#name}}
-          <div class="name mt-2 text-slate-500 text-sm">{{ name }}</div>
-        {{/name}}
       </div>
       <div class="w-2/3 text-right">
         {{#moment}}
@@ -20,7 +17,10 @@
       </div>
     </div>
     <div class="details mt-4">
-      <div class="title text-xl font-bold text-black h-16">{{ title }}</div>
+      {{#name}}
+        <div class="name mt-2 text-slate-500 text-sm">{{ name }}</div>
+      {{/name}}
+      <div class="title text-xl font-bold text-black">{{ title }}</div>
       {{#summary}}
         <div class="summary mt-4 text-slate-500">{{ summary }}</div>
       {{/summary}}
