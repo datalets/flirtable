@@ -62,6 +62,21 @@ header nav a {
   font-size: 125%;
 }
 
+.item.w-full.hidden {
+  display: none;
+}
+.item.w-full.hidden > a {
+  opacity: 0;
+  -webkit-transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -ms-transition: opacity 1s ease-in-out;
+  -o-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
+}
+.item.w-full > a {
+  opacity: 1;
+}
+
 .item .fields .fld span {
   font-size: 110%;
   padding: 0.3em 0.8em;
@@ -202,7 +217,7 @@ background-image: url(layers-2x.png)
 
 
 #pagination .disabled a {
-  color: grey;
+  color: lightgrey;
   cursor: default;
 }
 

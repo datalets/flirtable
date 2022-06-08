@@ -98,9 +98,9 @@ function renderItems(data) {
   function setPageVisible() {
     $gallery.children().each(function(ix) {
       if (ix >= thePage * perPage || ix < (thePage-1) * perPage) {
-        $(this).hide();
+        $(this).addClass('hidden');
       } else {
-        $(this).show();
+        $(this).removeClass('hidden');
       }
     });
   }
@@ -115,11 +115,11 @@ function renderItems(data) {
       thePage--;
     }
 
-    console.log(thePage, perPage, totalItems);
+    // console.log(thePage, perPage, totalItems);
 
     // Update visibility
     $pagination.find('.page-next,.page-prev').removeClass('disabled');
-    if (thePage * perPage > totalItems) {
+    if (thePage * perPage >= totalItems) {
       $pagination.find('.page-next').addClass('disabled');
     }
     if (thePage == 1) {
