@@ -1,9 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;700&display=swap');
+
 html, body {
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   height: 100%;
   margin: 0;
   padding: 0;
+
+  font-family: 'League Spartan', sans-serif;
 }
+
+/* Dark mode */
+/* body {
+  filter: invert(100%); background: black none repeat scroll 0% 0%; height: 100%;
+} */
+
+
 #map {
   height: 100%; width: 100vw;
   position: absolute;
@@ -39,44 +51,72 @@ header .title {
   padding-top: 0px;
 }
 header nav {
-  float: right;
   padding: 10px;
+  position: fixed;
+  bottom: 15px;
+  width: 100%;
+  text-align: center;
 }
 header nav a {
   margin: 5px;
   font-size: 125%;
 }
 
-.item .fields .fld {
+.item.w-full.hidden {
+  display: none;
+}
+.item.w-full.hidden > a {
+  opacity: 0;
+  -webkit-transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -ms-transition: opacity 1s ease-in-out;
+  -o-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
+}
+.item.w-full > a {
+  opacity: 1;
+}
+
+.item .fields .fld span {
   font-size: 110%;
-  padding: 0.3em 0.6em;
+  padding: 0.3em 0.8em;
   border-radius: 0.5em;
-  margin-right: 0.5em;
+  margin-right: 0.2em;
   margin-bottom: 0.5em;
   display: inline-block;
 }
-.item .fields .fld:nth-child(1) {
-  background-color: #99D1E9;
+.item .fields .fld:nth-child(1) span {
+  background-color: #D5F6E8;
+  color: #60C398;
 }
-.item .fields .fld:nth-child(2) {
-  background-color: #9391C9;
+.item .fields .fld:nth-child(2) span {
+  background-color: #E8D3FF;
+  color: #956EC0;
 }
-.item .fields .fld:nth-child(3) {
-  background-color: #EEE0D0;
+.item .fields .fld:nth-child(3) span {
+  background-color: #BCE0FB;
+  color: #4F7795;
 }
-.item .fields .fld:nth-child(4) {
+.item .fields .fld:nth-child(4) span {
   background-color: #EEB4A7;
 }
-.item .fields .fld:nth-child(5) {
+.item .fields .fld:nth-child(5) span {
   background-color: #BBA0CB;
 }
-.item .fields .fld:nth-child(6) {
+.item .fields .fld:nth-child(6) span {
   background-color: #D2DAB1;
 }
 
+.fields.text-sm {
+  font-weight: 500;
+}
 
-
-
+.details .title.text-xl {
+  min-height: 3em;
+}
+.details .fields.text-sm {
+  min-height: 11em;
+}
 
 .minipic {
   border-radius: 50%;    /* Make it a circle */
@@ -84,7 +124,7 @@ header nav a {
   height: 50px; width: auto;
   padding-right: 1em;
 }
-.btn {
+.map .btn {
   background: #ff505a;
   box-shadow: 3px 3px 3px lightgrey;
   text-decoration: none;
@@ -92,10 +132,10 @@ header nav a {
   border-radius: 7px;
   padding: 5px 7px 2px;
 }
-.btn:visited, .btn:active {
+.map .btn:visited, .map .btn:active {
   color: #eee;
 }
-.btn:hover {
+.map .btn:hover {
   color: #fff;
 }
 .popup .address,
@@ -173,4 +213,18 @@ header nav a {
 }
 .leaflet-retina .leaflet-control-layers-toggle {
 background-image: url(layers-2x.png)
+}
+
+
+#pagination .disabled a {
+  color: lightgrey;
+  cursor: default;
+}
+
+#search .cancel-search {
+  position: relative;
+  float: right;
+  width: 2em;
+  height: 0px;
+  top: 0.5em;
 }
