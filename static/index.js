@@ -1,4 +1,4 @@
-
+(function($) {
 
 let galleryTemplate = null;
 let fieldMap = {
@@ -23,8 +23,9 @@ BASE_FIELDS.forEach((item) => {
 const $gallery = $('#gallery');
 const $searchform = $('form#search');
 const $pagination = $('#pagination');
+
 let thePage = 1, perPage = 3, totalItems = 0;
-let originalData = null;
+let originalData = null, fetchTimeout = null;
 
 function parseRowData(row) {
   // Check data completeness
@@ -114,20 +115,21 @@ function renderItems(data) {
   thePage = 1;
   totalItems = data.length;
   if (totalItems > perPage) {
-    $pagination.show();
+    $pagination.removeClass('hidden');
   } else {
-    $pagination.hide();
+    $pagination.addClass('hidden');
   }
+
   function setPageVisible() {
-    $gallery.children().each(function(ix) {
-      if (ix >= thePage * perPage || ix < (thePage-1) * perPage) {
-        $(this).addClass('hidden');
+    $gallery.children().each(function(el, ix) {
+      if (ix < (thePage-1) * perPage || ix >= thePage * perPage) {
+        $(el).addClass('hidden');
       } else {
-        $(this).removeClass('hidden');
+        $(el).removeClass('hidden');
       }
     });
   }
-  $pagination.find('a').click(function(e) {
+  $pagination.find('a').on('click', function(e) {
     e.preventDefault();
     if ($(this).parent().hasClass('disabled')) return;
 
@@ -160,31 +162,42 @@ fetch('static/widgets/gallery.mustache')
 .then((template) => {
   galleryTemplate = template;
 
-  $.get("/items", function(data) {
+  fetch("/items")
+    .then((response) => response.json())
+    .then((data) => {
 
     renderItems(data);
     originalData = data;
 
-    $searchform.find('.cancel-search').click(function(event) {
+    $searchform.find('.cancel-search').on('click', function(event) {
       event.preventDefault();
       $searchform.find('input').val('');
       renderItems(originalData);
     });
 
-    $searchform.on('submit', function(event) {
-      event.preventDefault();
-      event.stopPropagation();
+    $searchform.find('input').on('keydown', function(event) {
+      $searchform.trigger('submit');
+    });
 
-    // });
-    // $searchform.find('input').on('keyup', function(event) {
-
-      const q = $searchform.find('input').val();
+    $searchform.handle('submit', function(event) {
+      // Minimum query length
+      const q = $searchform.find('input').nodes[0].value;
       if (q.length <3) return;
 
-      $.get("/search?q=" + q, function(data) {
-        $gallery.empty();
-        renderItems(data);
-      });
-    })
-  }); // -get(data)
+      // Timeout check
+      if (fetchTimeout !== null &&
+        new Date() - fetchTimeout < 1000) return;
+      fetchTimeout = new Date();
+
+      fetch("/search?q=" + q)
+        .then((response) => response.json())
+        .then((data) => {
+          $gallery.empty();
+          renderItems(data);
+      }); // -fetch search
+
+    }) // -on searchform
+  }); // -fetch items
 }); // -fetch template
+
+}(u));

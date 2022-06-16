@@ -91,7 +91,7 @@ def items_search():
     if 'items' not in session:
         session['items'] = fetch_data(at)
     g_items = session['items']
-    gfilter = []
+    gfilter = {}
     for idx in g_items.keys():
         gk = g_items[idx]
         matching = False
@@ -105,10 +105,9 @@ def items_search():
                 matching = True
                 break
         if matching:
-            gfilter.append(item_repr(
-                gk, idx, request.host_url
-            ))
-    return get_sorted(gfilter, SORT_REVERSE)
+            gfilter[idx] = gk
+    g_sortd = get_sorted(gfilter, SORT_REVERSE)
+    return [item_repr(g_items[idx], idx, request.host_url) for idx in g_sortd]
 
 
 @app.route("/detail/<key>/", methods=['GET'])
