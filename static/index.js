@@ -114,6 +114,7 @@ function renderItems(data) {
 
   thePage = 1;
   totalItems = data.length;
+
   if (totalItems > perPage) {
     $pagination.removeClass('hidden');
   } else {
@@ -121,6 +122,7 @@ function renderItems(data) {
   }
 
   function setPageVisible() {
+    // Set results visibility
     $gallery.children().each(function(el, ix) {
       if (ix < (thePage-1) * perPage || ix >= thePage * perPage) {
         $(el).addClass('hidden');
@@ -128,6 +130,15 @@ function renderItems(data) {
         $(el).removeClass('hidden');
       }
     });
+
+    // Button visibility
+    $pagination.find('.page-next,.page-prev').removeClass('disabled');
+    if (thePage * perPage >= totalItems) {
+      $pagination.find('.page-next').addClass('disabled');
+    }
+    if (thePage == 1) {
+      $pagination.find('.page-prev').addClass('disabled');
+    }
   }
   $pagination.find('a').on('click', function(e) {
     e.preventDefault();
@@ -141,16 +152,6 @@ function renderItems(data) {
     }
 
     // console.log(thePage, perPage, totalItems);
-
-    // Update visibility
-    $pagination.find('.page-next,.page-prev').removeClass('disabled');
-    if (thePage * perPage >= totalItems) {
-      $pagination.find('.page-next').addClass('disabled');
-    }
-    if (thePage == 1) {
-      $pagination.find('.page-prev').addClass('disabled');
-    }
-
     setPageVisible();
   });
   setPageVisible();
@@ -166,12 +167,14 @@ fetch('static/widgets/gallery.mustache')
     .then((response) => response.json())
     .then((data) => {
 
-    renderItems(data);
+    if (!START_EMPTY) {
+      renderItems(data);
+    }
     originalData = data;
 
     $searchform.find('.cancel-search').on('click', function(event) {
       event.preventDefault();
-      $searchform.find('input').val('');
+      $searchform.find('input').nodes[0].value = '';
       renderItems(originalData);
     });
 

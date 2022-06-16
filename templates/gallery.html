@@ -47,7 +47,7 @@
         <li class="page-item page-prev disabled"><a
             class="page-link text-xl py-3 px-6 relative block border-0 bg-transparent outline-none transition-all duration-300 rounded-md text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
             href="#" tabindex="-1" aria-disabled="true"><span aria-hidden="true">&#9667;</span> Previous</a></li>
-        <li class="page-item page-next"><a
+        <li class="page-item page-next disabled"><a
             class="page-link text-xl py-3 px-6 relative block border-0 bg-transparent outline-none transition-all duration-300 rounded-md text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
             href="#">Next <span aria-hidden="true">&#9657;</span></a></li>
       </ul>
@@ -63,9 +63,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
+const START_EMPTY = Boolean("{{ config.START_EMPTY }}");
 const BASE_FIELDS = "{{ config.BASE_FIELDS }}".split(';');
 const POPUP_FIELDS = "{{ config.POPUP_FIELDS }}".split(',');
-const BASE_DETAIL_URL = '{{ config.AIRTABLE_LINK }}';
+const BASE_DETAIL_URL = "{{ config.AIRTABLE_LINK }}";
 const MAX_FIELD_LENGTH = 100;
 </script>
 <script src="static/index.js?v={{ config.VERSION }}"></script>
