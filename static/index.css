@@ -74,7 +74,26 @@ header nav a {
   opacity: 1;
 }
 
-.item .fields .fld span {
+#filters.vertical .fields .fld {
+  display: inline-block;
+  width: 30%;
+  vertical-align: top;
+  margin-right: 3%;
+}
+
+#filters.horizontal .fields .fld {
+  display: block;
+  margin-bottom: 7px;
+}
+
+#filters .fields .fld { opacity: 0.8; }
+#filters .fields .fld span {
+  background-color: transparent;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.fields .fld span {
   font-size: 110%;
   padding: 0.3em 0.8em;
   border-radius: 0.5em;
@@ -82,25 +101,31 @@ header nav a {
   margin-bottom: 0.5em;
   display: inline-block;
 }
-.item .fields .fld:nth-child(1) span {
+#filters .fields .fld:nth-child(1) span.active,
+.fields .fld:nth-child(1) span {
   background-color: #D5F6E8;
   color: #60C398;
 }
-.item .fields .fld:nth-child(2) span {
+#filters .fields .fld:nth-child(2) span.active,
+.fields .fld:nth-child(2) span {
   background-color: #E8D3FF;
   color: #956EC0;
 }
-.item .fields .fld:nth-child(3) span {
+#filters .fields .fld:nth-child(3) span.active,
+.fields .fld:nth-child(3) span {
   background-color: #BCE0FB;
   color: #4F7795;
 }
-.item .fields .fld:nth-child(4) span {
+#filters .fields .fld:nth-child(4) span.active,
+.fields .fld:nth-child(4) span {
   background-color: #EEB4A7;
 }
-.item .fields .fld:nth-child(5) span {
+#filters .fields .fld:nth-child(5) span.active,
+.fields .fld:nth-child(5) span {
   background-color: #BBA0CB;
 }
-.item .fields .fld:nth-child(6) span {
+#filters .fields .fld:nth-child(6) span.active,
+.fields .fld:nth-child(6) span {
   background-color: #D2DAB1;
 }
 

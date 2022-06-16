@@ -21,11 +21,20 @@ BASE_FIELDS.forEach((item) => {
 });
 
 const $gallery = $('#gallery');
+const $filters = $('#filters');
 const $searchform = $('form#search');
 const $pagination = $('#pagination');
 
 let thePage = 1, perPage = 3, totalItems = 0;
 let originalData = null, fetchTimeout = null, theQuery = null;
+
+function delay(fn, ms) {
+  let timer = 0
+  return function(...args) {
+    clearTimeout(timer)
+    timer = setTimeout(fn.bind(this, ...args), ms || 0)
+  }
+}
 
 function parseRowData(row) {
   // Check data completeness
@@ -167,20 +176,67 @@ fetch('static/widgets/gallery.mustache')
     .then((response) => response.json())
     .then((data) => {
 
-    originalData = data;
-    $searchform.find('.cancel-search').on('click', function(event) {
-      event.preventDefault();
-      $searchform.find('input').nodes[0].value = '';
-      renderItems(originalData);
+    allFields = {};
+    data.forEach(function(row) {
+      const rd = parseRowData(row);
+      if (rd === null) return;
+      rd.fields.forEach(function(fld) {
+        if (Object.keys(allFields).indexOf(fld.id)<0) {
+          allFields[fld.id] = { name: fld.name, keys: [] };
+        }
+        if (fld.fulllist !== null) {
+          fld.fulllist.forEach(function(flddata) {
+            if (allFields[fld.id].keys.indexOf(flddata)<0) {
+              allFields[fld.id].keys.push(flddata);
+            }
+          });
+        } else if (fld.data !== '') {
+          if (allFields[fld.id].keys.indexOf(fld.data)<0) {
+            allFields[fld.id].keys.push(fld.data);
+          }
+        }
+      });
+    });
+    const $filterFld = $filters.find('.fields').empty();
+    Object.keys(allFields).forEach(function(ftype) {
+      const fltr = allFields[ftype];
+      $filterFld.append('\
+        <a class="fld ' + ftype + '" title="' + fltr.name + '"></a>\
+      ');
+      fltr.keys.forEach(function(fld) {
+        $filterFld.find('.' + ftype).append('\
+          <span>' + fld + '</span>\
+        ')
+      });
+    });
+    $filterFld.find('span').on('click', function() {
+      // Select one
+      $(this).siblings().removeClass('active');
+
+      // Select multiple
+      if ($(this).hasClass('active')) {
+        $(this).removeClass('active');
+      } else {
+        $(this).addClass('active');
+      }
+
+      if (fetchTimeout !== null &&
+        new Date() - fetchTimeout < 500) return;
+      fetchTimeout = new Date();
+
+      let theQuery = [];
+      $filterFld.find('span.active').nodes.forEach(function(n) {
+        theQuery.push(
+          $(n).parent().attr('title') + ':' + $(n).text()
+        );
+      });
+      fetch("/filter?q=" + theQuery.join(','))
+        .then((response) => response.json())
+        .then((data) => {
+          renderItems(data);
+      }); // -fetch search
     });
 
-    function delay(fn, ms) {
-      let timer = 0
-      return function(...args) {
-        clearTimeout(timer)
-        timer = setTimeout(fn.bind(this, ...args), ms || 0)
-      }
-    }
     $searchform.find('input').on('keydown,change', function(event) {
       delay($searchform.trigger('submit'), 1000);
     });
@@ -203,6 +259,14 @@ fetch('static/widgets/gallery.mustache')
           delay($searchform.trigger('submit'), 1000);
       }); // -fetch search
     }) // -on searchform
+
+    originalData = data;
+    $searchform.find('.cancel-search').on('click', function(event) {
+      event.preventDefault();
+      $filterFld.find('span.active').removeClass('active');
+      $searchform.find('input').nodes[0].value = '';
+      renderItems(originalData);
+    });
 
     if (!START_EMPTY) {
       renderItems(data);

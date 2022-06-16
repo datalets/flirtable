@@ -83,6 +83,34 @@ def items_list():
     return [item_repr(g_items[idx], idx, request.host_url) for idx in g_sortd]
 
 
+@app.route("/filter", methods=['GET'])
+def items_filter():
+    """
+    Filter by category
+    """
+    q = request.args.get('q')
+    if q == '':
+        return items_list()
+    print('Filtering:', q)
+    if 'items' not in session:
+        session['items'] = fetch_data(at)
+    g_items = session['items']
+    gquery = q.split(',')
+    gfilter = {}
+    for idx in g_items.keys():
+        matching = None
+        gk = g_items[idx]
+        for gfield in gquery:
+            flt, value = gfield.split(':')
+            # All popup fields must match
+            if flt in gk and flt in POPUP_FIELDS and matching in [None, True]:
+                matching = value in gk[flt]
+        if matching:
+            gfilter[idx] = gk
+    g_sortd = get_sorted(gfilter, SORT_REVERSE)
+    return [item_repr(g_items[idx], idx, request.host_url) for idx in g_sortd]
+
+
 @app.route("/search", methods=['GET'])
 def items_search():
     """

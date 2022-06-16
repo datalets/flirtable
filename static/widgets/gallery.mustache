@@ -26,7 +26,7 @@
       {{/summary}}
       <div class="fields mt-4 text-sm">
       {{#fields}}
-        {{^fulllist}}
+        {{^fulllist.length}}
           {{^fulltext}}
             <div class="fld {{ id }}" title="{{ name }}">
               <span>{{ data }}</span>
@@ -41,12 +41,14 @@
               </span>
             </div>
           {{/fulltext}}
-        {{/fulllist}}
-        <div class="fld {{ id }}" title="{{ name }}">
-        {{#fulllist}}
-          <span>{{ . }}</span>
-        {{/fulllist}}
-        </div>
+        {{/fulllist.length}}
+        {{#fulllist.length}}
+          <div class="fld {{ id }}" title="{{ name }}">
+          {{#fulllist}}
+            <span>{{ . }}</span>
+          {{/fulllist}}
+          </div>
+        {{/fulllist.length}}
       {{/fields}}
       </div>
     </div>
