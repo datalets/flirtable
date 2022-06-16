@@ -2,6 +2,7 @@
 
 from wrangle import (
     fetch_data,
+    get_sorted,
     item_repr,
 )
 from flask import (
@@ -25,6 +26,7 @@ load_dotenv()
 try:
     VERSION = os.getenv("VERCEL_GIT_COMMIT_SHA", 1)
     SORT_KEY = os.getenv("SORT_KEY", None)
+    SORT_REVERSE = os.getenv("SORT_REVERSE", None)
     BASE_FIELDS = os.getenv("BASE_FIELDS", '')
     POPUP_FIELDS = os.getenv("POPUP_FIELDS", '')
     REQUIRED_FIELDS = os.getenv("REQUIRED_FIELDS", POPUP_FIELDS)
@@ -40,6 +42,10 @@ except KeyError:
     print("Environment not ready: see README for required keys")
     exit(1)
 
+# Check for reverse option
+if SORT_KEY.startswith('-'):
+    SORT_REVERSE = True
+    SORT_KEY = SORT_KEY[1:]
 
 # Set up the Flask App
 app = FlaskAPI(__name__, static_url_path='/static')
@@ -47,6 +53,7 @@ app.secret_key = bytes([getrandbits(8) for _ in range(0, 16)])
 
 app.config.update(
     SORT_KEY=SORT_KEY,
+    SORT_REVERSE=SORT_REVERSE,
     MAPBOX_KEY=MAPBOX_KEY,
     BASE_FIELDS=BASE_FIELDS,
     POPUP_FIELDS=POPUP_FIELDS,
@@ -70,8 +77,8 @@ def items_list():
     if 'items' not in session:
         session['items'] = fetch_data(at)
     g_items = session['items']
-    return [item_repr(g_items[idx], idx, request.host_url)
-            for idx in sorted(g_items.keys())]
+    g_sortd = get_sorted(g_items, SORT_REVERSE)
+    return [item_repr(g_items[idx], idx, request.host_url) for idx in g_sortd]
 
 
 @app.route("/search", methods=['GET'])
@@ -85,7 +92,7 @@ def items_search():
         session['items'] = fetch_data(at)
     g_items = session['items']
     gfilter = []
-    for idx in sorted(g_items.keys()):
+    for idx in g_items.keys():
         gk = g_items[idx]
         matching = False
         for fld in gk.keys():
@@ -101,7 +108,7 @@ def items_search():
             gfilter.append(item_repr(
                 gk, idx, request.host_url
             ))
-    return gfilter
+    return get_sorted(gfilter, SORT_REVERSE)
 
 
 @app.route("/detail/<key>/", methods=['GET'])
