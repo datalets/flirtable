@@ -25,7 +25,7 @@ const $searchform = $('form#search');
 const $pagination = $('#pagination');
 
 let thePage = 1, perPage = 3, totalItems = 0;
-let originalData = null, fetchTimeout = null;
+let originalData = null, fetchTimeout = null, theQuery = null;
 
 function parseRowData(row) {
   // Check data completeness
@@ -101,6 +101,7 @@ function parseRowData(row) {
 }
 
 function renderItems(data) {
+  $gallery.empty();
 
   data.forEach(function(row) {
     // console.debug("Row:", row);
@@ -124,10 +125,9 @@ function renderItems(data) {
   function setPageVisible() {
     // Set results visibility
     $gallery.children().each(function(el, ix) {
+      $(el).removeClass('hidden');
       if (ix < (thePage-1) * perPage || ix >= thePage * perPage) {
         $(el).addClass('hidden');
-      } else {
-        $(el).removeClass('hidden');
       }
     });
 
@@ -167,39 +167,46 @@ fetch('static/widgets/gallery.mustache')
     .then((response) => response.json())
     .then((data) => {
 
-    if (!START_EMPTY) {
-      renderItems(data);
-    }
     originalData = data;
-
     $searchform.find('.cancel-search').on('click', function(event) {
       event.preventDefault();
       $searchform.find('input').nodes[0].value = '';
       renderItems(originalData);
     });
 
-    $searchform.find('input').on('keydown', function(event) {
-      $searchform.trigger('submit');
+    function delay(fn, ms) {
+      let timer = 0
+      return function(...args) {
+        clearTimeout(timer)
+        timer = setTimeout(fn.bind(this, ...args), ms || 0)
+      }
+    }
+    $searchform.find('input').on('keydown,change', function(event) {
+      delay($searchform.trigger('submit'), 1000);
     });
 
     $searchform.handle('submit', function(event) {
       // Minimum query length
       const q = $searchform.find('input').nodes[0].value;
-      if (q.length <3) return;
+      if (q.length <3 || q.trim() == theQuery) return;
 
       // Timeout check
       if (fetchTimeout !== null &&
-        new Date() - fetchTimeout < 1000) return;
+        new Date() - fetchTimeout < 500) return;
       fetchTimeout = new Date();
 
-      fetch("/search?q=" + q)
+      theQuery = q.trim();
+      fetch("/search?q=" + theQuery)
         .then((response) => response.json())
         .then((data) => {
-          $gallery.empty();
           renderItems(data);
+          delay($searchform.trigger('submit'), 1000);
       }); // -fetch search
-
     }) // -on searchform
+
+    if (!START_EMPTY) {
+      renderItems(data);
+    }
   }); // -fetch items
 }); // -fetch template
 
