@@ -209,6 +209,15 @@ fetch('static/widgets/gallery.mustache')
         ')
       });
     });
+    if ($filterFld.find('span').nodes.length > 0) {
+      $filters.find('button').on('click', function() {
+        $filters.find('div.hidden').removeClass('hidden');
+        $(this).addClass('hidden');
+      });
+    } else {
+      // hide button if no filters
+      $filters.find('button').addClass('hidden');
+    }
     $filterFld.find('span').on('click', function() {
       // Select one
       $(this).siblings().removeClass('active');
