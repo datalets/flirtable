@@ -230,7 +230,8 @@ fetch('static/widgets/gallery.mustache')
           $(n).parent().attr('title') + ':' + $(n).text()
         );
       });
-      fetch("/filter?q=" + theQuery.join(','))
+      const theQueryURI = encodeURIComponent(theQuery.join(','));
+      fetch("/filter?q=" + theQueryURI)
         .then((response) => response.json())
         .then((data) => {
           renderItems(data);

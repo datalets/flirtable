@@ -18,6 +18,7 @@ from airtable import airtable
 import os
 
 from random import getrandbits
+from urllib.parse import unquote_plus
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -30,7 +31,7 @@ try:
     BASE_FIELDS = os.getenv("BASE_FIELDS", '')
     POPUP_FIELDS = os.getenv("POPUP_FIELDS", '')
     REQUIRED_FIELDS = os.getenv("REQUIRED_FIELDS", POPUP_FIELDS)
-    START_EMPTY = os.getenv("START_EMPTY", 0)
+    START_EMPTY = int(os.getenv("START_EMPTY", 0))
     MAPBOX_KEY = os.getenv("MAPBOX_KEY", '')
     TABLE_NAME = os.environ["AIRTABLE_TABLE"]
     AIRTABLE_LINK = os.getenv("AIRTABLE_LINK", '')
@@ -88,7 +89,7 @@ def items_filter():
     """
     Filter by category
     """
-    q = request.args.get('q')
+    q = unquote_plus(request.args.get('q'))
     if q == '':
         return items_list()
     print('Filtering:', q)

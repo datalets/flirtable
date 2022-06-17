@@ -45,7 +45,7 @@ The following environment keys can be used to configure this project:
 - `POPUP_FIELDS` (optional) are a comma-delimited list of columns which are shown in the detail pop-up
 - `REQUIRED_FIELDS` (optional) are a comma-delimited list of columns which are required for row to be shown
 - `SORT_KEY` (optional) to indicate which column to sort on, prefixed with - to reverse the order
-- `START_EMPTY` (optional) set to 1 or true if you do not want any results visible on loading
+- `START_EMPTY` (optional) set to 1 if you do not want any results visible on loading
 
 ## Deployment
 

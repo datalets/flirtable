@@ -79,7 +79,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
-const START_EMPTY = Boolean("{{ config.START_EMPTY }}");
+const START_EMPTY = Boolean({{ config.START_EMPTY }});
 const BASE_FIELDS = "{{ config.BASE_FIELDS }}".split(';');
 const POPUP_FIELDS = "{{ config.POPUP_FIELDS }}".split(',');
 const BASE_DETAIL_URL = "{{ config.AIRTABLE_LINK }}";
