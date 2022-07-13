@@ -210,8 +210,14 @@ fetch('static/widgets/gallery.mustache')
       });
     });
     if ($filterFld.find('span').nodes.length > 0) {
-      $filters.find('button').on('click', function() {
-        $filters.find('div.hidden').removeClass('hidden');
+      $filters.find('button.open').on('click', function() {
+        $filters.find('div.filters-main').removeClass('hidden');
+        $filters.find('button.close').removeClass('hidden');
+        $(this).addClass('hidden');
+      });
+      $filters.find('button.close').on('click', function() {
+        $filters.find('div.filters-main').addClass('hidden');
+        $filters.find('button.open').removeClass('hidden');
         $(this).addClass('hidden');
       });
     } else {

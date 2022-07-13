@@ -43,11 +43,14 @@
 
   <div id="filters" class="flex flex-wrap m-2 horizontal">
     <div class="w-full text-center">
-      <button title="Show Filters" class="border-transparent text-teal-500 hover:bg-gray-200 py-3 px-6 rounded" type="button">
+      <button title="Show Filters" class="open border-transparent text-teal-500 hover:bg-gray-200 py-3 px-6 rounded" type="button">
         &#129147;&nbsp;Advanced
       </button>
+      <button title="Close Filters" class="close hidden border-transparent text-teal-500 hover:bg-gray-200 py-3 px-6 rounded">
+        &#x2715;
+      </button>
     </div>
-    <div class="w-full lg:w-3/4 ml-auto mr-auto items-center py-2 hidden">
+    <div class="filters-main w-full lg:w-3/4 ml-auto mr-auto items-center py-2 hidden">
       <div class="fields mt-4 text-sm text-center">
         <a class="fld test" title="Another">
           <span>Please</span>
