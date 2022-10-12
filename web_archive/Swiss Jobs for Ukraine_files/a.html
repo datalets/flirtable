@@ -1,0 +1,1611 @@
+<!DOCTYPE html>
+<html><head><style type="text/css">.swal-icon--error{border-color:#f27474;-webkit-animation:animateErrorIcon .5s;animation:animateErrorIcon .5s}.swal-icon--error__x-mark{position:relative;display:block;-webkit-animation:animateXMark .5s;animation:animateXMark .5s}.swal-icon--error__line{position:absolute;height:5px;width:47px;background-color:#f27474;display:block;top:37px;border-radius:2px}.swal-icon--error__line--left{-webkit-transform:rotate(45deg);transform:rotate(45deg);left:17px}.swal-icon--error__line--right{-webkit-transform:rotate(-45deg);transform:rotate(-45deg);right:16px}@-webkit-keyframes animateErrorIcon{0%{-webkit-transform:rotateX(100deg);transform:rotateX(100deg);opacity:0}to{-webkit-transform:rotateX(0deg);transform:rotateX(0deg);opacity:1}}@keyframes animateErrorIcon{0%{-webkit-transform:rotateX(100deg);transform:rotateX(100deg);opacity:0}to{-webkit-transform:rotateX(0deg);transform:rotateX(0deg);opacity:1}}@-webkit-keyframes animateXMark{0%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}50%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}80%{-webkit-transform:scale(1.15);transform:scale(1.15);margin-top:-6px}to{-webkit-transform:scale(1);transform:scale(1);margin-top:0;opacity:1}}@keyframes animateXMark{0%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}50%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}80%{-webkit-transform:scale(1.15);transform:scale(1.15);margin-top:-6px}to{-webkit-transform:scale(1);transform:scale(1);margin-top:0;opacity:1}}.swal-icon--warning{border-color:#f8bb86;-webkit-animation:pulseWarning .75s infinite alternate;animation:pulseWarning .75s infinite alternate}.swal-icon--warning__body{width:5px;height:47px;top:10px;border-radius:2px;margin-left:-2px}.swal-icon--warning__body,.swal-icon--warning__dot{position:absolute;left:50%;background-color:#f8bb86}.swal-icon--warning__dot{width:7px;height:7px;border-radius:50%;margin-left:-4px;bottom:-11px}@-webkit-keyframes pulseWarning{0%{border-color:#f8d486}to{border-color:#f8bb86}}@keyframes pulseWarning{0%{border-color:#f8d486}to{border-color:#f8bb86}}.swal-icon--success{border-color:#a5dc86}.swal-icon--success:after,.swal-icon--success:before{content:"";border-radius:50%;position:absolute;width:60px;height:120px;background:#fff;-webkit-transform:rotate(45deg);transform:rotate(45deg)}.swal-icon--success:before{border-radius:120px 0 0 120px;top:-7px;left:-33px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:60px 60px;transform-origin:60px 60px}.swal-icon--success:after{border-radius:0 120px 120px 0;top:-11px;left:30px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:0 60px;transform-origin:0 60px;-webkit-animation:rotatePlaceholder 4.25s ease-in;animation:rotatePlaceholder 4.25s ease-in}.swal-icon--success__ring{width:80px;height:80px;border:4px solid hsla(98,55%,69%,.2);border-radius:50%;box-sizing:content-box;position:absolute;left:-4px;top:-4px;z-index:2}.swal-icon--success__hide-corners{width:5px;height:90px;background-color:#fff;padding:1px;position:absolute;left:28px;top:8px;z-index:1;-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}.swal-icon--success__line{height:5px;background-color:#a5dc86;display:block;border-radius:2px;position:absolute;z-index:2}.swal-icon--success__line--tip{width:25px;left:14px;top:46px;-webkit-transform:rotate(45deg);transform:rotate(45deg);-webkit-animation:animateSuccessTip .75s;animation:animateSuccessTip .75s}.swal-icon--success__line--long{width:47px;right:8px;top:38px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-animation:animateSuccessLong .75s;animation:animateSuccessLong .75s}@-webkit-keyframes rotatePlaceholder{0%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}5%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}12%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}to{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}}@keyframes rotatePlaceholder{0%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}5%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}12%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}to{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}}@-webkit-keyframes animateSuccessTip{0%{width:0;left:1px;top:19px}54%{width:0;left:1px;top:19px}70%{width:50px;left:-8px;top:37px}84%{width:17px;left:21px;top:48px}to{width:25px;left:14px;top:45px}}@keyframes animateSuccessTip{0%{width:0;left:1px;top:19px}54%{width:0;left:1px;top:19px}70%{width:50px;left:-8px;top:37px}84%{width:17px;left:21px;top:48px}to{width:25px;left:14px;top:45px}}@-webkit-keyframes animateSuccessLong{0%{width:0;right:46px;top:54px}65%{width:0;right:46px;top:54px}84%{width:55px;right:0;top:35px}to{width:47px;right:8px;top:38px}}@keyframes animateSuccessLong{0%{width:0;right:46px;top:54px}65%{width:0;right:46px;top:54px}84%{width:55px;right:0;top:35px}to{width:47px;right:8px;top:38px}}.swal-icon--info{border-color:#c9dae1}.swal-icon--info:before{width:5px;height:29px;bottom:17px;border-radius:2px;margin-left:-2px}.swal-icon--info:after,.swal-icon--info:before{content:"";position:absolute;left:50%;background-color:#c9dae1}.swal-icon--info:after{width:7px;height:7px;border-radius:50%;margin-left:-3px;top:19px}.swal-icon{width:80px;height:80px;border-width:4px;border-style:solid;border-radius:50%;padding:0;position:relative;box-sizing:content-box;margin:20px auto}.swal-icon:first-child{margin-top:32px}.swal-icon--custom{width:auto;height:auto;max-width:100%;border:none;border-radius:0}.swal-icon img{max-width:100%;max-height:100%}.swal-title{color:rgba(0,0,0,.65);font-weight:600;text-transform:none;position:relative;display:block;padding:13px 16px;font-size:27px;line-height:normal;text-align:center;margin-bottom:0}.swal-title:first-child{margin-top:26px}.swal-title:not(:first-child){padding-bottom:0}.swal-title:not(:last-child){margin-bottom:13px}.swal-text{font-size:16px;position:relative;float:none;line-height:normal;vertical-align:top;text-align:left;display:inline-block;margin:0;padding:0 10px;font-weight:400;color:rgba(0,0,0,.64);max-width:calc(100% - 20px);overflow-wrap:break-word;box-sizing:border-box}.swal-text:first-child{margin-top:45px}.swal-text:last-child{margin-bottom:45px}.swal-footer{text-align:right;padding-top:13px;margin-top:13px;padding:13px 16px;border-radius:inherit;border-top-left-radius:0;border-top-right-radius:0}.swal-button-container{margin:5px;display:inline-block;position:relative}.swal-button{background-color:#7cd1f9;color:#fff;border:none;box-shadow:none;border-radius:5px;font-weight:600;font-size:14px;padding:10px 24px;margin:0;cursor:pointer}.swal-button:not([disabled]):hover{background-color:#78cbf2}.swal-button:active{background-color:#70bce0}.swal-button:focus{outline:none;box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(43,114,165,.29)}.swal-button[disabled]{opacity:.5;cursor:default}.swal-button::-moz-focus-inner{border:0}.swal-button--cancel{color:#555;background-color:#efefef}.swal-button--cancel:not([disabled]):hover{background-color:#e8e8e8}.swal-button--cancel:active{background-color:#d7d7d7}.swal-button--cancel:focus{box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(116,136,150,.29)}.swal-button--danger{background-color:#e64942}.swal-button--danger:not([disabled]):hover{background-color:#df4740}.swal-button--danger:active{background-color:#cf423b}.swal-button--danger:focus{box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(165,43,43,.29)}.swal-content{padding:0 20px;margin-top:20px;font-size:medium}.swal-content:last-child{margin-bottom:20px}.swal-content__input,.swal-content__textarea{-webkit-appearance:none;background-color:#fff;border:none;font-size:14px;display:block;box-sizing:border-box;width:100%;border:1px solid rgba(0,0,0,.14);padding:10px 13px;border-radius:2px;transition:border-color .2s}.swal-content__input:focus,.swal-content__textarea:focus{outline:none;border-color:#6db8ff}.swal-content__textarea{resize:vertical}.swal-button--loading{color:transparent}.swal-button--loading~.swal-button__loader{opacity:1}.swal-button__loader{position:absolute;height:auto;width:43px;z-index:2;left:50%;top:50%;-webkit-transform:translateX(-50%) translateY(-50%);transform:translateX(-50%) translateY(-50%);text-align:center;pointer-events:none;opacity:0}.swal-button__loader div{display:inline-block;float:none;vertical-align:baseline;width:9px;height:9px;padding:0;border:none;margin:2px;opacity:.4;border-radius:7px;background-color:hsla(0,0%,100%,.9);transition:background .2s;-webkit-animation:swal-loading-anim 1s infinite;animation:swal-loading-anim 1s infinite}.swal-button__loader div:nth-child(3n+2){-webkit-animation-delay:.15s;animation-delay:.15s}.swal-button__loader div:nth-child(3n+3){-webkit-animation-delay:.3s;animation-delay:.3s}@-webkit-keyframes swal-loading-anim{0%{opacity:.4}20%{opacity:.4}50%{opacity:1}to{opacity:.4}}@keyframes swal-loading-anim{0%{opacity:.4}20%{opacity:.4}50%{opacity:1}to{opacity:.4}}.swal-overlay{position:fixed;top:0;bottom:0;left:0;right:0;text-align:center;font-size:0;overflow-y:auto;background-color:rgba(0,0,0,.4);z-index:10000;pointer-events:none;opacity:0;transition:opacity .3s}.swal-overlay:before{content:" ";display:inline-block;vertical-align:middle;height:100%}.swal-overlay--show-modal{opacity:1;pointer-events:auto}.swal-overlay--show-modal .swal-modal{opacity:1;pointer-events:auto;box-sizing:border-box;-webkit-animation:showSweetAlert .3s;animation:showSweetAlert .3s;will-change:transform}.swal-modal{width:478px;opacity:0;pointer-events:none;background-color:#fff;text-align:center;border-radius:5px;position:static;margin:20px auto;display:inline-block;vertical-align:middle;-webkit-transform:scale(1);transform:scale(1);-webkit-transform-origin:50% 50%;transform-origin:50% 50%;z-index:10001;transition:opacity .2s,-webkit-transform .3s;transition:transform .3s,opacity .2s;transition:transform .3s,opacity .2s,-webkit-transform .3s}@media (max-width:500px){.swal-modal{width:calc(100% - 20px)}}@-webkit-keyframes showSweetAlert{0%{-webkit-transform:scale(1);transform:scale(1)}1%{-webkit-transform:scale(.5);transform:scale(.5)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}to{-webkit-transform:scale(1);transform:scale(1)}}@keyframes showSweetAlert{0%{-webkit-transform:scale(1);transform:scale(1)}1%{-webkit-transform:scale(.5);transform:scale(.5)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}to{-webkit-transform:scale(1);transform:scale(1)}}</style>
+
+    <title>Flirtable</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="https://flirtable.vercel.app/static/favicon.png">
+
+    <link rel="stylesheet" href="a_data/tailwind.min.css" integrity="sha512-wnea99uKIC3TJF7v4eKk4Y+lMz2Mklv18+r4na2Gn1abDRPPOeef95xTzdwGD9e6zXJBteMIhZ1+68QC5byJZw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="a_data/index.css">
+
+</head>
+<body class="gallery">
+
+  <hide>
+    <header>
+      
+      <nav>
+      
+      
+        <a href="https://flirtable.vercel.app/refresh"><button class="bg-gray-500 hover:bg-gray-700 text-white p-2 rounded">↻</button></a>
+      </nav>
+    </header>
+  </hide>
+
+  <form id="search" class="flex flex-wrap m-8">
+    <div class="w-full lg:w-1/3 ml-auto mr-auto items-center border-b border-black py-2">
+      <button title="New search" class="cancel-search float-right flex-shrink-0 border-transparent text-gray-800 text-sm py-1 px-2 rounded" type="button">
+        &nbsp;✕&nbsp;
+      </button>
+      <input class="w-full appearance-none bg-transparent text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none focus:bg-teal-700 hover:bg-teal-700 text-sm text-black py-1 px-2 rounded" type="text" placeholder="Search ..." aria-label="Search query">
+    </div>
+  </form>
+
+  <div id="filters" class="flex flex-wrap m-2 horizontal">
+    <div class="w-full text-center">
+      <button title="Show Filters" class="open border-transparent text-teal-500 hover:bg-gray-200 py-3 px-6 rounded" type="button">
+        🡻&nbsp;Advanced
+      </button>
+      <button title="Close Filters" class="close hidden border-transparent text-teal-500 hover:bg-gray-200 py-3 px-6 rounded">
+        ✕
+      </button>
+    </div>
+    <div class="filters-main w-full lg:w-3/4 ml-auto mr-auto items-center py-2 hidden">
+      <div class="fields mt-4 text-sm text-center"><a class="fld work-load" title="Work load"><span>41 - 60%</span><span>full time (over 80%)</span><span>unspecified</span><span>10%</span><span>20 - 40%</span><span>61 - 80%</span></a><a class="fld category" title="Category"><span>Cargo</span><span>IT</span><span>Consulting</span><span>Healthcare</span><span>Technical</span><span>Produktion</span><span>Pharma</span><span>Facility Management</span><span>Research</span><span>HR</span><span>Banking</span><span>Public Social Aid</span><span>Leadership</span><span>Climate</span><span>Solar energy</span><span>Business</span><span>Gastronomie</span><span>Internship</span></a><a class="fld language" title="Language"><span>English</span><span>German (Deutsch)</span><span>French (Français)</span><span>Ukrainian (Украïнська)</span></a></div>
+    </div>
+  </div>
+
+  <div id="pagination" class="flex justify-center">
+    <nav aria-label="Page navigation example">
+      <ul class="flex list-style-none">
+        <li class="page-item page-prev disabled"><a class="page-link text-xl py-3 px-6 relative block border-0 bg-transparent outline-none transition-all duration-300 rounded-md text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" href="#" tabindex="-1" aria-disabled="true"><span aria-hidden="true">◃</span> Previous</a></li>
+        <li class="page-item page-next"><a class="page-link text-xl py-3 px-6 relative block border-0 bg-transparent outline-none transition-all duration-300 rounded-md text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" href="#">Next <span aria-hidden="true">▹</span></a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div id="gallery" class="flex flex-wrap" tabindex="0"><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://jobs.swissport.com/default/job/Z%C3%BCrich-Checkport-Schweiz-AG-Allrounder-Non-Aviation-Support-Services/750762802/" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/Swissport.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-07-22T13:06:00.000Z">Jul 22</div>
+          <div class="text text-gray-600">Zürich</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Swissport International AG</div>
+      <div class="title text-xl font-bold text-black">Allrounder Non Aviation Support Services</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>41 - 60%</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>Cargo</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+            <span>German (Deutsch)</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://migros-gruppe.jobs/de/unsere-unternehmen/job/migros-bank/senior-test-automation-engineer-mw/210863e8-6d96-4bce-a674-8ae256b4a9f8" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/MigrosBank.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-07-19T09:38:00.000Z">Jul 19</div>
+          <div class="text text-gray-600">Zürich</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Migros Bank</div>
+      <div class="title text-xl font-bold text-black">Senior Test Automation Engineer (m/w)</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>IT</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>German (Deutsch)</span>
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://migros-gruppe.jobs/de/unsere-unternehmen/job/migros-bank/devsecops-engineer-wm/7d1701a6-2542-42e7-a702-bc47948c7fc0" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/MigrosBank.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-07-19T09:37:00.000Z">Jul 19</div>
+          <div class="text text-gray-600">Zürich</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Migros Bank</div>
+      <div class="title text-xl font-bold text-black">DevSecOps Engineer (w/m)</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>IT</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>German (Deutsch)</span>
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://migros-gruppe.jobs/de/unsere-unternehmen/job/migros-bank/automation-engineer-wm/8cc47d19-f737-4640-8fa9-1b4eb8dc9664" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/MigrosBank.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-07-19T09:35:00.000Z">Jul 19</div>
+          <div class="text text-gray-600">Zürich</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Migros Bank</div>
+      <div class="title text-xl font-bold text-black">Automation Engineer (w/m)</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>IT</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>German (Deutsch)</span>
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://migros-gruppe.jobs/de/unsere-unternehmen/job/migros-bank/data-analyst-anwendungsentwicklerin/480ab3f4-8c00-4c32-a831-94238999cb00" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/MigrosBank.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-07-19T09:31:00.000Z">Jul 19</div>
+          <div class="text text-gray-600">Zürich</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Migros Bank</div>
+      <div class="title text-xl font-bold text-black">Data Analyst / Anwendungsentwickler*in </div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>IT</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>German (Deutsch)</span>
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://migros-gruppe.jobs/de/unsere-unternehmen/job/migros-bank/business-engineer-digital-banking-wm/df3e3ca8-f607-47ca-b367-2bc4992fa024" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/MigrosBank.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-07-19T09:29:00.000Z">Jul 19</div>
+          <div class="text text-gray-600">Zürich</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Migros Bank</div>
+      <div class="title text-xl font-bold text-black">Business Engineer Digital Banking (w/m)</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>IT</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>German (Deutsch)</span>
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://careers.ey.com/ey/job/Zurich-Manager-Financial-Services-Risk-EMEIA-Financial-Services-in-Zurich-%2880-100%29-8005/825531501/" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/EY.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-07-15T21:42:00.000Z">Jul 15</div>
+          <div class="text text-gray-600">Zürich</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Ernst &amp; Young</div>
+      <div class="title text-xl font-bold text-black">Manager Financial Services Risk / EMEIA Financial Services</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>Consulting</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://jobs.vetropack.com/job/B%C3%BClach-SAP-FICO-Expert/829589701/" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/Vetropack.jfif">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-07-15T21:37:00.000Z">Jul 15</div>
+          <div class="text text-gray-600">Zürich</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Vetropack AG</div>
+      <div class="title text-xl font-bold text-black">SAP Fico Expert</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>IT</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://www.noser.com/karriere/jobs/technischer-projektleiter-fuer-softwareprojekte/luzern/" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/Noser.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-07-13T08:17:00.000Z">Jul 13</div>
+          <div class="text text-gray-600">Luzern</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Noser Engineering AG</div>
+      <div class="title text-xl font-bold text-black">Technischer Projektleiter für Softwareprojekte</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>IT</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>German (Deutsch)</span>
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://migros-gruppe.jobs/de/unsere-unternehmen/job/migros-bank/test-engineer-digital-banking-wm/b71a124a-45f8-4100-b960-43bd6dcc4258" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/MigrosBank.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-07-12T15:06:00.000Z">Jul 12</div>
+          <div class="text text-gray-600">Zürich</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Migros Bank</div>
+      <div class="title text-xl font-bold text-black">Test Engineer Digital Banking (w/m)</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>IT</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>German (Deutsch)</span>
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://www.smartrecruiters.com/Avaloq1/743999838096934-senior-business-analyst-securities-finance-and-collateral-management-80-100-" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/Avaloq.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-07-12T15:00:00.000Z">Jul 12</div>
+          <div class="text text-gray-600">Zürich</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Avaloq Group AG</div>
+      <div class="title text-xl font-bold text-black">Senior Business Analyst - Securities Finance and Collateral Management</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>IT</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://www.smartrecruiters.com/Avaloq1/743999838066672-senior-software-engineer-search-80-100-" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/Avaloq.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-07-12T14:58:00.000Z">Jul 12</div>
+          <div class="text text-gray-600">Zürich</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Avaloq Group AG</div>
+      <div class="title text-xl font-bold text-black">Senior Software Engineer Search</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>IT</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://www.jobs.ch/en/vacancies/?sort-by=date&amp;term=jobs4ukrainians" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/CasavitaStifung.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-07-12T14:56:00.000Z">Jul 12</div>
+          <div class="text text-gray-600">Basel</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Casavita Stiftung</div>
+      <div class="title text-xl font-bold text-black">Assistenz Gesundheit und Soziales / Pflegehilfe SRK</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>41 - 60%</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>Healthcare</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>German (Deutsch)</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://www.jobs.ch/de/stellenangebote/?sort-by=date&amp;term=jobs4ukrainians&amp;jobid=c2524bd5-6a28-4d3f-8502-ccb0aefe60ae" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/Noser.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-07-07T16:56:00.000Z">Jul 7</div>
+          <div class="text text-gray-600">Zürich</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Noser Engineering AG</div>
+      <div class="title text-xl font-bold text-black">Cloud Solution Engineer (Azure/AWS) (m/w/d)</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>IT</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+            <span>German (Deutsch)</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://www.jobs.ch/de/stellenangebote/?sort-by=date&amp;term=jobs4ukrainians&amp;jobid=cef2c8a3-fb7c-4165-b9ae-4ec17c09aa88" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/GF.png">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-07-07T16:51:00.000Z">Jul 7</div>
+          <div class="text text-gray-600">Bern</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Georg Fischer AG</div>
+      <div class="title text-xl font-bold text-black">Techniker*in Maschinenbau</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>Technical</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+            <span>German (Deutsch)</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://www.jobs.ch/de/stellenangebote/?sort-by=date&amp;term=jobs4ukrainians&amp;jobid=e70fd7e3-08ac-48a7-812c-e4033c74cbc5" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/GF.png">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-07-07T16:49:00.000Z">Jul 7</div>
+          <div class="text text-gray-600">Bern</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Georg Fischer AG</div>
+      <div class="title text-xl font-bold text-black">Design Engineer</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>IT</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+            <span>German (Deutsch)</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://www.jobs.ch/en/vacancies/?sort-by=date&amp;term=jobs4ukrainians&amp;jobid=e928e8c3-7b9f-4807-b16e-91b11d49bc42" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/SRGSSR.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-07-06T15:51:00.000Z">Jul 6</div>
+          <div class="text text-gray-600">Zürich</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">SRG SSR</div>
+      <div class="title text-xl font-bold text-black">IT Security Engineer</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>IT</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://www.jobs.ch/en/vacancies/?sort-by=date&amp;term=jobs4ukrainians&amp;jobid=c355ccec-a226-4dc9-9303-952570bd8042" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/InterdiscountLogo.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-07-06T15:49:00.000Z">Jul 6</div>
+          <div class="text text-gray-600">Bern</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Interdiscount</div>
+      <div class="title text-xl font-bold text-black">Applikationsentwickler/in</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>IT</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>German (Deutsch)</span>
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://www.jobs.ch/en/vacancies/?sort-by=date&amp;term=jobs4ukrainians&amp;jobid=c355ccec-a226-4dc9-9303-952570bd8042" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/InterdiscountLogo.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-07-06T15:49:00.000Z">Jul 6</div>
+          <div class="text text-gray-600">Zürich</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Interdiscount</div>
+      <div class="title text-xl font-bold text-black">Applikationsentwickler/in</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>IT</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>German (Deutsch)</span>
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://www.zucker.ch/karriere/stellen-fuer-fachkraefte" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/SchweizerZuckerAG.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-07-05T09:09:22.000Z">Jul 5</div>
+          <div class="text text-gray-600">Thurgau</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Schweizer Zucker AG</div>
+      <div class="title text-xl font-bold text-black">Various Jobs including seasonal jobs</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>unspecified</span>
+            </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://www.zucker.ch/karriere/stellen-fuer-fachkraefte" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/SchweizerZuckerAG.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-07-05T09:07:53.000Z">Jul 5</div>
+          <div class="text text-gray-600">Bern</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Schweizer Zucker AG</div>
+      <div class="title text-xl font-bold text-black">Various Jobs including seasonal jobs</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>unspecified</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>Produktion</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://careers.roche.com/global/en/job/202205-118469/Internship-in-Lab-Support-and-Compliance-of-Pharma-Technical-Development-of-Synthetic-Molecules-m-f-d" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/Roche.png">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-07-05T05:21:00.000Z">Jul 5</div>
+          <div class="text text-gray-600">Basel</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Roche Holding AG</div>
+      <div class="title text-xl font-bold text-black">Internship in Lab Support and Compliance</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>Pharma</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://jobs.vetropack.com/default/job/St-Prex-Concierge/822644701/" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/Vetropack.jfif">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-07-05T05:11:00.000Z">Jul 5</div>
+          <div class="text text-gray-600">Waadt</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Vetropack AG</div>
+      <div class="title text-xl font-bold text-black">Concierge / Facility Manager</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>Facility Management</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+            <span>French (Français)</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://www.jobs.apps.be.ch/offene-stellen/research-assistant-bioinformatician-genetic-and-epigenetic-regulation-of-heart-development-and-regeneration/6d94eff8-7d4f-44f3-81de-a9db167c758d" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/UniBern.png">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-07-04T05:11:00.000Z">Jul 4</div>
+          <div class="text text-gray-600">Bern</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Universität Bern</div>
+      <div class="title text-xl font-bold text-black">Research Assistant</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>Research</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://ch.indeed.com/jobs?q=Ukraine&amp;l=Z%C3%BCrich%2C%20ZH&amp;sort=date&amp;vjk=38ad26afd78debdd" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/JohnsonJohnson.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-06-29T15:50:00.000Z">Jun 29</div>
+          <div class="text text-gray-600">Zug</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Johnson &amp; Johnson AG</div>
+      <div class="title text-xl font-bold text-black">Country Payroll Lead</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>HR</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://ch.indeed.com/Ukraine-Jobs-in-Z%C3%BCrich,-ZH?vjk=0b79ed205eb3813f" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/CreditSuisse.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-06-29T15:49:00.000Z">Jun 29</div>
+          <div class="text text-gray-600">Zürich</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Credit Suisse AG</div>
+      <div class="title text-xl font-bold text-black">Assistant Relationship Manager - Private Banking</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>Banking</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://tas-creditsuisse.taleo.net/careersection/external_advsearch/jobdetail.ftl?job=208888&amp;lang=en&amp;ms_iframe_src=SNS-10043" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/CreditSuisse.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-06-28T07:02:00.000Z">Jun 28</div>
+          <div class="text text-gray-600">Zürich</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Credit Suisse AG</div>
+      <div class="title text-xl font-bold text-black">Data Scientist - Compliance IT</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>IT</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://www.smartrecruiters.com/Avaloq1/743999832831104-product-manager-api" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/Avaloq.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-06-28T06:55:00.000Z">Jun 28</div>
+          <div class="text text-gray-600">Zürich</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Avaloq Group AG</div>
+      <div class="title text-xl font-bold text-black">Product Manager API</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>IT</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://www.smartrecruiters.com/Avaloq1/743999832610468-backend-software-engineer-for-avaloq-core-platform-80-100-" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/Avaloq.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-06-28T06:53:00.000Z">Jun 28</div>
+          <div class="text text-gray-600">Zurich</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Avaloq Group AG</div>
+      <div class="title text-xl font-bold text-black">Avaloq Data Base Software Engineer</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>IT</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://www.jobs.ch/de/stellenangebote/?term=ukrainisch&amp;jobid=e557e51b-e43d-4539-8659-42030e6f7f39" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/Caritas.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-06-23T09:45:00.000Z">Jun 23</div>
+          <div class="text text-gray-600">Bern</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Caritas</div>
+      <div class="title text-xl font-bold text-black">Intercultural Interpreter</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>10%</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>Public Social Aid</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>Ukrainian (Украïнська)</span>
+            <span>German (Deutsch)</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://www.medicjobs.ch/jobs/nurses-from-ukraine-with-protection-status-s-100/69130/?utm_source=jooble&amp;utm_medium=cpc&amp;utm_campaign=allvacancies" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/Hirslanden.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-06-23T08:30:00.000Z">Jun 23</div>
+          <div class="text text-gray-600">Zürich</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Klinik Hirslanden</div>
+      <div class="title text-xl font-bold text-black">Nurse</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>Healthcare</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://www.jobleads.com/registrierung/job?campaignId=7&amp;jobId=ebacd68379637c355fd9db2bafdf7fe6f&amp;jmId=1285&amp;utm_source=jobrapido%7Cr-jb%7Cffeed%7Cc-ch&amp;utm_medium=job-external&amp;utm_campaign=jobs&amp;utm_content=jobmarket-id%3D1285%7Clandingpage-id%3D158%7Cjob-id%3Dbacd68379637c355fd9db2bafdf7fe6f%7Cjob-workarea%3D06-04%7Cjob-hierarchy%3D08%7Cjob-salary-benchmark%3D03%7Cjob-industry%3D01%7Cjob-location%3Dbasel%7Cjobtitle%3Dhead-of-climate-and-nature&amp;jobjmlp=158&amp;ccuid=39556105732&amp;ccadv=10833&amp;ccref=10833_bacd68379637c355fd9db2bafdf7fe6f" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/Syngenta.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-06-21T04:36:00.000Z">Jun 21</div>
+          <div class="text text-gray-600">Basel</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Syngenta International AG</div>
+      <div class="title text-xl font-bold text-black">Head of Climate and Nature</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>Leadership</span>
+            <span>Climate</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://www.giger-energy.ch/wp-content/uploads/2022/06/Job_Internship.pdf" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/GigerEnergy.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-06-20T04:30:00.000Z">Jun 20</div>
+          <div class="text text-gray-600">Bern</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Giger Energy GmbH</div>
+      <div class="title text-xl font-bold text-black">Praktikum - Internship</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>20 - 40%</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>Solar energy</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+            <span>German (Deutsch)</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://www.amag-group.ch/de/jobs-und-karriere/jobs-for-ukrainian-refugees.html" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/Amag.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-06-15T15:07:00.000Z">Jun 15</div>
+          <div class="text text-gray-600">Zug</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Amag Group AG</div>
+      <div class="title text-xl font-bold text-black">Internship Programm (6 months)</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>Business</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://en.comparis.ch/people/jobs/detail/589693" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/comparis.ch.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-06-14T04:38:00.000Z">Jun 14</div>
+          <div class="text text-gray-600">Zurich</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">comparis.ch</div>
+      <div class="title text-xl font-bold text-black">iOS Engineer/Architect</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>IT</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://www.smartrecruiters.com/Avaloq1/743999829872962-android-developer-mid-senior-level-80-100-" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/Avaloq.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-06-13T04:49:00.000Z">Jun 13</div>
+          <div class="text text-gray-600">Zürich</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Avaloq Group AG</div>
+      <div class="title text-xl font-bold text-black">Android Developer (mid - senior Level)</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>IT</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://jobs.unisg.ch/offene-stellen/doctoral-research-position-in-comparative-politics-for-ukrainian-scholar-m-w-d/0b9e6ade-2cd9-491f-acc3-2ae646d95398?utm_campaign=google_jobs_apply&amp;utm_source=google_jobs_apply&amp;utm_medium=organic" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/HSG.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-06-13T04:49:00.000Z">Jun 13</div>
+          <div class="text text-gray-600">St. Gallen</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">HSG</div>
+      <div class="title text-xl font-bold text-black">Doctoral research position in Comparative Politics for Ukrainian scholar</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>41 - 60%</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>Research</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://careers.abb/global/en/job/82005686?utm_source=" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/ABB.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-06-13T04:49:00.000Z">Jun 13</div>
+          <div class="text text-gray-600">Aargau</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">ABB Schweiz AG</div>
+      <div class="title text-xl font-bold text-black">Temporary Software Developer (4-6 months)</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>IT</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+            <span>German (Deutsch)</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://www.smartrecruiters.com/Avaloq1/743999830382006-senior-frontend-software-engineer-avaloq-wealth-platform-80-100-" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/Avaloq.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-06-13T04:49:00.000Z">Jun 13</div>
+          <div class="text text-gray-600">Zurich</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Avaloq Group AG</div>
+      <div class="title text-xl font-bold text-black">Senior Frontend Software Engineer </div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>IT</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://careers.abb/global/en/job/80932000/Senior-Software-Engineer-Azure-Cloud-80-100" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/ABB.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-06-13T04:49:00.000Z">Jun 13</div>
+          <div class="text text-gray-600">Zurich</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">ABB Schweiz AG</div>
+      <div class="title text-xl font-bold text-black">Senior Software Engineer – Azure Cloud</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>IT</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://www.force-7.ch/" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/Logograu_turkis.png">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-06-10T15:30:00.000Z">Jun 10</div>
+          <div class="text text-gray-600">Zurich</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">FORCE7 AG</div>
+      <div class="title text-xl font-bold text-black">Avaloq Developer</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>IT</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://www.myjob.ch/job/crew-mitarbeiter-in/596437?utm_campaign=google_jobs_apply&amp;utm_source=google_jobs_apply&amp;utm_medium=organic" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/MCDonalds.jfif">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-06-10T15:30:00.000Z">Jun 10</div>
+          <div class="text text-gray-600">Basel</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Mc Donalds</div>
+      <div class="title text-xl font-bold text-black">Crew-Mitarbeiter/in</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>full time (over 80%)</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>Gastronomie</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>German (Deutsch)</span>
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://www.force-7.ch/" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/Logograu_turkis.png">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-06-10T15:30:00.000Z">Jun 10</div>
+          <div class="text text-gray-600">Zurich</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">FORCE7 AG</div>
+      <div class="title text-xl font-bold text-black">Application Manager E-Banking</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>61 - 80%</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>IT</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://jobs.smartrecruiters.com/CERN/743999812305858-science-for-ukraine-training-and-work-opportunities-for-ukrainian-nationals" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/huge.jpg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-06-09T15:24:00.000Z">Jun 9</div>
+          <div class="text text-gray-600">Geneva</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">CERN</div>
+      <div class="title text-xl font-bold text-black">Science for Ukraine</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>unspecified</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>Research</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://link.ostendis.com/publication/research-secretary/xm0z7scjfkdjq4wc8pblyc6rmkfnfvfztindefhkifp6hhnqeyz7l6d08e0rmqkz" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/Lungenliga.jpg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-06-09T14:34:00.000Z">Jun 9</div>
+          <div class="text text-gray-600">Bern</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Lungenliga Schweiz</div>
+      <div class="title text-xl font-bold text-black">Research Secretary</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>41 - 60%</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>Healthcare</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div><div class="item w-full sm:w-1/2 md:w-1/3 lg:w-1/3 hidden">
+  <a class="m-6 p-6 lg:p-10 rounded-xl shadow-lg bg-white" style="display:block" href="https://jobs.generali.ch/offene-stellen/intern-it-solutions-engineering-m-w-d-temporary-from-july-to-november-2022/2320d23b-57b3-4c17-b234-0fa4badfd557" target="_blank">
+    <div class="flex">
+      <div class="w-1/3">
+          <img class="h-12 w-12" src="a_data/Generali.jpeg">
+      </div>
+      <div class="w-2/3 text-right">
+          <div class="text-md text-gray-400" title="2022-06-09T08:03:00.000Z">Jun 9</div>
+          <div class="text text-gray-600">Zürich</div>
+      </div>
+    </div>
+    <div class="details mt-4">
+        <div class="name mt-2 text-slate-500 text-sm">Generali Switzerland</div>
+      <div class="title text-xl font-bold text-black">Intern IT Solutions Engineering (m/f/d), temporary  (Jul -Nov 2022)</div>
+      <div class="fields mt-4 text-sm">
+            <div class="fld work-load" title="Work load">
+              <span>61 - 80%</span>
+            </div>
+          <div class="fld category" title="Category">
+            <span>IT</span>
+            <span>Internship</span>
+          </div>
+          <div class="fld language" title="Language">
+            <span>English</span>
+          </div>
+      </div>
+    </div>
+
+      <div class="buttons mt-4 text-center">
+        <span class="text-sm bg-transparent text-blue-700 font-semibold py-2 px-4 border border-transparent hover:border-blue-600 rounded">
+          Details
+        </span>
+      </div>
+  </a>
+</div></div>
+
+
+<script src="a_data/umbrella.min.js" integrity="sha512-/v8d+p/V/8IBsbvwAaHiHdN9vEZjUKvL62PjzvpAi4BfZLpO8+tTwEFA9DXB8q8tG0+Px5VVwjLOUubFkijNPw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="a_data/mustache.min.js" integrity="sha512-HYiNpwSxYuji84SQbCU5m9kHEsRqwWypXgJMBtbRSumlx1iBB6QaxgEBZHSHEGM+fKyCX/3Kb5V5jeVXm0OglQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="a_data/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="a_data/moment.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+const START_EMPTY = Boolean(0);
+const BASE_FIELDS = "Date=Created;Placename=Canton;Title=Job title;Link=Link;Name=Name (Org);Images=Logo (Org);Summary=None".split(';');
+const POPUP_FIELDS = "Work load,Category,Language".split(',');
+const BASE_DETAIL_URL = "";
+const MAX_FIELD_LENGTH = 100;
+</script>
+<script src="a_data/index.js"></script>
+
+</body></html>
