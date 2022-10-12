@@ -34,12 +34,36 @@
 
   <form id="search" class="flex flex-wrap m-8">
     <div class="w-full lg:w-1/3 ml-auto mr-auto items-center border-b border-black py-2">
-      <button title="New search" class="cancel-search float-right flex-shrink-0 border-transparent border-4 text-teal-500 hover:text-teal-800 text-sm py-1 px-2 rounded" type="button">
+      <button title="New search" class="cancel-search float-right flex-shrink-0 border-transparent text-gray-800 text-sm py-1 px-2 rounded" type="button">
         &nbsp;&#x2715;&nbsp;
       </button>
       <input class="w-full appearance-none bg-transparent text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none focus:bg-teal-700 hover:bg-teal-700 text-sm text-black py-1 px-2 rounded" type="text" placeholder="Search ..." aria-label="Search query">
     </div>
   </form>
+
+  <div id="filters" class="flex flex-wrap m-2 horizontal">
+    <div class="w-full text-center">
+      <button title="Show Filters" class="open border-transparent text-teal-500 hover:bg-gray-200 py-3 px-6 rounded" type="button">
+        &#129147;&nbsp;Advanced
+      </button>
+      <button title="Close Filters" class="close hidden border-transparent text-teal-500 hover:bg-gray-200 py-3 px-6 rounded">
+        &#x2715;
+      </button>
+    </div>
+    <div class="filters-main w-full lg:w-3/4 ml-auto mr-auto items-center py-2 hidden">
+      <div class="fields mt-4 text-sm text-center">
+        <a class="fld test" title="Another">
+          <span>Please</span>
+        </a>
+        <a class="fld test" title="Test">
+          <span>Wait</span>
+        </a>
+        <a class="fld lorem" title="Lorem">
+          <span>Loading ...</span>
+        </a>
+      </div>
+    </div>
+  </div>
 
   <div id="pagination" class="flex justify-center">
     <nav aria-label="Page navigation example">
@@ -47,7 +71,7 @@
         <li class="page-item page-prev disabled"><a
             class="page-link text-xl py-3 px-6 relative block border-0 bg-transparent outline-none transition-all duration-300 rounded-md text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
             href="#" tabindex="-1" aria-disabled="true"><span aria-hidden="true">&#9667;</span> Previous</a></li>
-        <li class="page-item page-next"><a
+        <li class="page-item page-next disabled"><a
             class="page-link text-xl py-3 px-6 relative block border-0 bg-transparent outline-none transition-all duration-300 rounded-md text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
             href="#">Next <span aria-hidden="true">&#9657;</span></a></li>
       </ul>
@@ -57,16 +81,16 @@
   <div id="gallery" class="flex flex-wrap" tabindex="0"></div>
 
 </body>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js" integrity="sha512-BrvVYNhKh6yST24E5DY/LopLO5d+8KYmIXyrpBIJ2PK+CyyJw/cLSG/BfJomWLC1IblNrmiJWGlrGueKLd/Ekw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/umbrella/0.0.0/umbrella.min.js" integrity="sha512-/v8d+p/V/8IBsbvwAaHiHdN9vEZjUKvL62PjzvpAi4BfZLpO8+tTwEFA9DXB8q8tG0+Px5VVwjLOUubFkijNPw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.1.0/mustache.min.js" integrity="sha512-HYiNpwSxYuji84SQbCU5m9kHEsRqwWypXgJMBtbRSumlx1iBB6QaxgEBZHSHEGM+fKyCX/3Kb5V5jeVXm0OglQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
+const START_EMPTY = Boolean({{ config.START_EMPTY }});
 const BASE_FIELDS = "{{ config.BASE_FIELDS }}".split(';');
 const POPUP_FIELDS = "{{ config.POPUP_FIELDS }}".split(',');
-const BASE_DETAIL_URL = '{{ config.AIRTABLE_LINK }}';
+const BASE_DETAIL_URL = "{{ config.AIRTABLE_LINK }}";
 const MAX_FIELD_LENGTH = 100;
 </script>
 <script src="static/index.js?v={{ config.VERSION }}"></script>
